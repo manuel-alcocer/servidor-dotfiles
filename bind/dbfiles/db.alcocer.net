@@ -1,0 +1,51 @@
+$TTL 86400  ; 1 day
+alcocer.net.    IN SOA  ns1.alcocer.net. root.alcocer.net. (
+                889        ; serial
+                604800     ; refresh (1 week)
+                86400      ; retry (1 day)
+                2419200    ; expire (4 weeks)
+                86400      ; minimum (1 day)
+                )
+                NS      ns1.alcocer.net.
+                NS      ns2.alcocer.net.
+                MX      10      mx.alcocer.net.
+                A       10.0.0.10
+$ORIGIN alcocer.net.
+servidor        A       10.0.0.10
+ns1             A       10.0.0.10
+ns2             A       10.0.0.11
+amule           CNAME   servidor
+cloud           CNAME   servidor
+transmission    CNAME   servidor
+tv              CNAME   servidor
+vomistar        CNAME   servidor
+www             CNAME   servidor
+icecast         CNAME   servidor
+nas             CNAME   servidor
+plex            CNAME   servidor
+proxmox         CNAME   servidor
+controller1     CNAME   controller
+network1        CNAME   network
+servidor-fb     A       10.0.0.11
+openwrt         A       10.0.0.13
+hplaserjet      A       10.0.0.20
+backups         A       10.0.10.49
+controller      A       10.0.50.10
+storage1        A       10.0.50.13
+compute1        A       10.0.50.11
+network         A       10.0.50.12
+pris            A       10.0.0.101
+zhora           A       10.0.0.100
+nodo1eth0       A       10.0.0.1
+nodo2eth0       A       10.0.0.2
+nodo3eth0       A       10.0.0.3
+nodo4eth0       A       10.0.0.4
+pve1            CNAME   nodo1eth0
+pve2            CNAME   nodo2eth0
+pve3            CNAME   nodo3eth0
+pve4            CNAME   nodo4eth0
+imap            A       217.116.0.237
+mx              A       217.116.0.227
+pop3            A       217.116.0.237
+smtp            A       217.116.0.228
+webmail         A       217.116.0.155

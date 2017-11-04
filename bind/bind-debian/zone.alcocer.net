@@ -1,0 +1,15 @@
+zone "alcocer.net." {
+    type master;
+    file "db.alcocer.net";
+    // allow-update { key "rndc-key"; }; 
+    allow-transfer { slaves; };
+    notify yes;
+};
+
+zone "0.10.in-addr.arpa." {
+    type master;
+    file "db.10.0";
+    // allow-update { key "rndc-key"; }; 
+    allow-transfer { slaves; };
+    notify yes;
+};

@@ -1,0 +1,15 @@
+$ORIGIN .
+$TTL 86400	; 1 day
+dyn.alcocer.net		IN SOA	ns1.alcocer.net. manuel.alcocer.net. (
+				7          ; serial
+				604800     ; refresh (1 week)
+				86400      ; retry (1 day)
+				2419200    ; expire (4 weeks)
+				86400      ; minimum (1 day)
+				)
+			NS	ns1.alcocer.net.
+			NS	ns2.alcocer.net.
+$ORIGIN dyn.alcocer.net.
+$TTL 1800	; 30 minutes
+prueba1			A	10.0.128.106
+			TXT	"004e99ccd8573a8f51de7530e125743be2"

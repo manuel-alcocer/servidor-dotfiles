@@ -1,0 +1,6 @@
+zone "dyn.alcocer.net." {
+    type master;
+    file "db.dyn.alcocer.net";
+    allow-update { key "rndc-key"; }; 
+    notify yes;
+};
