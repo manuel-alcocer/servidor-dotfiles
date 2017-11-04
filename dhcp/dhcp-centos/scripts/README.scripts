@@ -1,0 +1,9 @@
+Please use this directory for on-commit scripts instead of `/etc/dhcp` to
+make them work with the system selinux policy.
+
+NOTE: To make dhcpd daemon able to execute the scripts /etc/dhcp directory
+MUST be accessible by dhcpd group. Due to huge impact on dhclient users
+it was not done during the installation so please adjust access rights accordingly
+
+For example:
+# chgrp dhcpd /etc/dhcp
