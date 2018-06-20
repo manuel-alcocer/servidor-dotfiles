@@ -1,4 +1,0 @@
-casa._domainkey	IN	TXT	( "v=DKIM1; k=rsa; t=y; "
-	"p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC93afBPtRxMhaHbWa6W8/PlADpO8aE8Oq2d1rsy078ad0IvS1tj6CzqVQLp"
-    "R9xlDgOFBTA6hza372EVrN7NK9F2ozrO0DmjHmL+G0hmJiCYxkZnD6cz4XlVFYIhRoR3lzzS1EYNu8/NtfBDOXtPoydWZSZFOMB"
-    "wsL/tORoSAVhswIDAQAB" )  ; ----- DKIM key casa for alcocer.net

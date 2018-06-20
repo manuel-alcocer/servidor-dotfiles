@@ -1,5 +1,0 @@
-zone "linuxarena.net." {
-    type master;
-    file "db.linuxarena.net";
-    notify yes;
-};
