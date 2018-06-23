@@ -1,0 +1,33 @@
+# Use root/example as user/password credentials
+version: '3.6'
+
+services:
+
+  mariadb:
+    container_name: mariadb0
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: eeQuah4a
+    volumes:
+      - /data/mariadb/var/lib/mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+  powerdns:
+    container_name: pdns
+    build: powerdns
+    restart: always
+    depends_on:
+      - mariadb
+    ports:
+      - 53:53
+      - 53:53/udp
+
+  adminer:
+    container_name: adminer0
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
