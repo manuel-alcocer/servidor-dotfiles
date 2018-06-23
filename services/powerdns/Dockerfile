@@ -3,10 +3,11 @@ LABEl Maintainer Manuel Alcocer Jiménez <manuel@alcocer.net>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN echo  "pdns-backend-mysql      pdns-backend-mysql/app-password-confirm password admin.1234" > pdnspreseed && \
+RUN ln -s /dev/null /etc/systemd/system/pdns.service && \
+    echo  "pdns-backend-mysql      pdns-backend-mysql/app-password-confirm password admin.1234" > pdnspreseed && \
     echo  "pdns-backend-mysql      pdns-backend-mysql/password-confirm     password admin.1234" > pdnspreseed && \
     echo  "pdns-backend-mysql      pdns-backend-mysql/mysql/app-pass       password admin.1234" > pdnspreseed && \
-    echo  "pdns-backend-mysql      pdns-backend-mysql/mysql/admin-pass     password eeQuah4a" > pdnspreseed && \
+    echo  "pdns-backend-mysql      pdns-backend-mysql/mysql/admin-pass     password mariadb" > pdnspreseed && \
     echo  "pdns-backend-mysql      pdns-backend-mysql/remote/host  select  mariadb" > pdnspreseed && \
     echo  "pdns-backend-mysql      pdns-backend-mysql/db/dbname    string  pdns" > pdnspreseed && \
     echo  "pdns-backend-mysql      pdns-backend-mysql/upgrade-backup       boolean false" > pdnspreseed && \

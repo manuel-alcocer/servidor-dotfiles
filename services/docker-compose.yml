@@ -2,27 +2,26 @@
 version: '3.6'
 
 services:
-
   mariadb:
     container_name: mariadb0
     image: mariadb
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: eeQuah4a
+      MYSQL_ROOT_PASSWORD: mariadb
     volumes:
-      - /data/mariadb/var/lib/mysql:/var/lib/mysql
+      - mariadb0vol:/var/lib/mysql
     ports:
       - 3306:3306
 
-  powerdns:
-    container_name: pdns
-    build: powerdns
-    restart: always
-    depends_on:
-      - mariadb
-    ports:
-      - 53:53
-      - 53:53/udp
+        #   powerdns:
+        #     container_name: pdns0
+        #     build: powerdns
+        #     restart: always
+        #     depends_on:
+        #       - mariadb
+        #     ports:
+        #       - 53:53
+        #       - 53:53/udp
 
   adminer:
     container_name: adminer0
@@ -31,3 +30,5 @@ services:
     ports:
       - 8080:8080
 
+volumes:
+  mariadb0vol:
