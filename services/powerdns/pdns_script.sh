@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 MYSQL_PORT=3306
-MYSQL_HOST='127.0.0.1'
+MYSQL_HOST='mariadb'
 MYSQL_USER='root'
 MYSQL_PASSWD="${MYSQL_ROOT_PASSWORD:-mariadb}"
 
@@ -105,8 +105,13 @@ function main(){
             printf 'Haciendo MySQL ping a %s...\n' "${MYSQL_HOST}"
             if [[ $(ping_db) == 0 ]]; then
                 populate_mysql
+                while true; do
+                    :
+                    sleep 10
+                done
                 exit 0
             fi
+            printf 'Intentando de nuevo en %s segundos...\n' "${INTERVAL}"
             sleep $INTERVAL
             ((i++))
         done

@@ -13,15 +13,15 @@ services:
     ports:
       - 3306:3306
 
-        #   powerdns:
-        #     container_name: pdns0
-        #     build: powerdns
-        #     restart: always
-        #     depends_on:
-        #       - mariadb
-        #     ports:
-        #       - 53:53
-        #       - 53:53/udp
+  powerdns:
+    container_name: pdns0
+    build: powerdns
+    restart: always
+    depends_on:
+      - mariadb
+    ports:
+      - 53:53
+      - 53:53/udp
 
   adminer:
     container_name: adminer0
