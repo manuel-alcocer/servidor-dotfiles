@@ -1,27 +1,47 @@
 #!/usr/bin/env bash
 
-MYSQL_PORT=3306
-MYSQL_HOST='mariadb'
-MYSQL_USER='root'
-MYSQL_PASSWD="${MYSQL_ROOT_PASSWORD:-mariadb}"
-
-MYSQL_CMD="mysql -h${MYSQL_HOST} -u${MYSQL_USER} -p${MYSQL_PASSWD} -P${MYSQL_PORT}"
-
-PDNS_DB='pdns'
-PDNS_USER='pdns'
-PDNS_USER_PASSWD='pdns'
-PDNS_API_KEY='hackme.123'
-PDNS_WEB_PORT=8081
-PDNS_WEB_PASSWD='hackme.123'
+MYSQL_CMD="mysql -h${MYSQL_HOST} -u${MYSQL_USER} -p${MYSQL_ROOT_PASSWORD} -P${MYSQL_PORT}"
 
 PDNS_SQL_FILE='/usr/share/doc/pdns-backend-mysql/schema.mysql.sql'
 
 PDNS_CMD='/usr/sbin/pdns_server'
 
-MAX_RETRIES=6
-INTERVAL=10
+# si MAX_RETRIES < 1: espera infinito hasta que haya conexion
+
+MAX_RETRIES=5
+INTERVAL=2
 
 declare DAEMON_OPTS
+
+function load_options(){
+    DAEMON_OPTS=(
+        "--allow-recursion=0.0.0.0/0"
+        "--api=yes"
+        "--api-key=${PDNS_API_KEY}"
+        "--daemon=no"
+        "--disable-syslog"
+        "--dnsupdate=yes"
+        "--guardian=no"
+        "--gmysql-dbname=${PDNS_DB}"
+        "--gmysql-dnssec=yes"
+        "--gmysql-host=${MYSQL_HOST}"
+        "--gmysql-password=${PDNS_USER_PASSWD}"
+        "--gmysql-port=${MYSQL_PORT}"
+        "--gmysql-user=${PDNS_USER}"
+        "--launch=gmysql"
+        "--local-address=0.0.0.0"
+        "--local-ipv6="
+        "--no-config"
+        "--security-poll-suffix="
+        "--setgid=pdns"
+        "--setuid=pdns"
+        "--webserver=yes"
+        "--webserver-address=0.0.0.0"
+        "--webserver-allow-from=0.0.0.0/0,::/0"
+        "--webserver-password=${PDNS_WEB_PASSWD}"
+        "--webserver-port=${PDNS_WEB_PORT}"
+        "--write-pid=no")
+}
 
 function create_pdns_db(){
     printf 'Creando la base de datos %s...\n' "${PDNS_DB}"
@@ -56,68 +76,43 @@ function populate_mysql(){
     fi
 }
 
-function ping_db(){
+function ping_mysql(){
+    printf 'Haciendo MySQL ping a %s...\n' "${MYSQL_HOST}"
     $MYSQL_CMD -e ';' &>/dev/null
-    echo $?
+    return $?
 }
 
-function load_options(){
-    DAEMON_OPTS=(
-        "--allow-recursion=0.0.0.0/0"
-        "--api=yes"
-        "--api-key=${PDNS_API_KEY}"
-        "--daemon=no"
-        "--disable-syslog"
-        "--dnsupdate=yes"
-        "--guardian=no"
-        "--gmysql-dbname=${PDNS_DB}"
-        "--gmysql-dnssec=yes"
-        "--gmysql-host=${MYSQL_HOST}"
-        "--gmysql-password=${PDNS_USER_PASSWD}"
-        "--gmysql-port=${MYSQL_PORT}"
-        "--gmysql-user=${PDNS_USER}"
-        "--launch=gmysql"
-        "--local-address=0.0.0.0"
-        "--local-ipv6="
-        "--no-config"
-        "--security-poll-suffix="
-        "--setgid=pdns"
-        "--setuid=pdns"
-        "--webserver=yes"
-        "--webserver-address=0.0.0.0"
-        "--webserver-allow-from=0.0.0.0/0,::/0"
-        "--webserver-password=${PDNS_WEB_PASSWD}"
-        "--webserver-port=${PDNS_WEB_PORT}"
-        "--write-pid=no")
+function ping_db(){
+    $MYSQL_CMD -e "use ${PDNS_DB}" &>/dev/null
+    echo $?
 }
 
 function launch(){
     printf 'Cargando opciones...\n'
     load_options
     printf 'Iniciando el demonio...\n'
+    set -x
     $PDNS_CMD ${DAEMON_OPTS[*]}
+    set +x
 }
 
 function main(){
-    if [[ $1 == 'populate' ]]; then
-        i=0
-        while (( i < MAX_RETRIES )); do
-            printf 'Haciendo MySQL ping a %s...\n' "${MYSQL_HOST}"
-            if [[ $(ping_db) == 0 ]]; then
-                populate_mysql
-                while true; do
-                    :
-                    sleep 10
-                done
-                exit 0
-            fi
-            printf 'Intentando de nuevo en %s segundos...\n' "${INTERVAL}"
-            sleep $INTERVAL
-            ((i++))
-        done
-        exit 1
-    else
+    i=0
+    ping_mysql
+    pinged=$?
+    while (( i < MAX_RETRIES )) && (( pinged != 0 )); do
+        (( MAX_RETRIES > 0 )) && ((i++))
+        printf '[%s] Intentando de nuevo en %s segundos...\n' "$i" "${INTERVAL}"
+        sleep $INTERVAL
+        ping_mysql
+        pinged=$?
+    done
+    if (( pinged == 0 )); then
+        [[ $(ping_db) == 0 ]] || populate_mysql
         launch
+    else
+        printf 'No hay conexión con el servicio de base de datos.\nSaliendo...\n'
+        exit 1
     fi
 }
 
