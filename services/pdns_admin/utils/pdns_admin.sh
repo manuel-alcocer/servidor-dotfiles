@@ -6,6 +6,14 @@ VENV_ACTIVATE="${PDNSADMIN_PATH}/flask/bin/activate"
 
 MYSQL_CMD="mysql -h${MYSQL_HOST} -u${MYSQL_USER} -p${MYSQL_ROOT_PASSWORD} -P${MYSQL_PORT}"
 
+function exit_on_err(){
+    # exit 1
+    while true; do
+        sleep 10
+        :
+    done
+}
+
 function check_config(){
     # si existe este fichero, indica que ya se ha configurado
     # la aplicación Flask
@@ -57,26 +65,93 @@ function init_flask(){
     build_assets
 }
 
-function database_init(){
-    $MYSQL_CMD -e "create database $SQLA_DB_NAME"
-    [[ $? ]] && printf 'No se pudo crear la base de datos.\nSaliendo...\n' && exit 1
+function ping_mysql(){
+    $MYSQL_CMD -e ';'
+    [[ $? != 0 ]] && exit_on_err
+}
+
+function check_db(){
+    $MYSQL_CMD -e "use $SQLA_DB_NAME"
+    echo $?
+}
+
+function db_creation(){
+    printf 'Haciendo ping a mysql...\n'
+    ping_mysql
+    printf 'Haciendo ping a la base de datos...\n'
+    if [[ $(check_db) == 0 ]]; then
+        printf 'La base de datos existe. No se crea\n'
+    else
+        printf 'Creando la base de datos...\n'
+        $MYSQL_CMD -e "create database $SQLA_DB_NAME"
+        [[ $? ]] && printf 'No se pudo crear la base de datos.\nSaliendo...\n' && exit_on_err
+    fi
+}
+
+function create_user(){
+    printf 'Creando usuario..\n'
     $MYSQL_CMD -e "create user '${SQLA_DB_USER}'@'%' identified by '${SQLA_DB_PASSWORD}'"
-    [[ $? ]] && printf 'No se pudo crear el usuario.\nSaliendo...\n' && exit 1
+    [[ $? ]] && printf 'No se pudo crear el usuario.\nSaliendo...\n' && exit_on_err
+}
+
+function check_user_password(){
+    printf 'Comprobando credenciales de acceso...\n'
+    mysql -h${SQLA_DB_HOST} -u${SQLA_DB_USER} -p${SQLA_DB_PASSWORD} -P${MYSQL_PORT} -e ';'
+    if [[ $? ]]; then
+        create_user
+    else
+        printf 'El usuario ya existe y tiene password. No hay que crearlo\n'
+    fi
+}
+
+function check_username(){
+    printf 'Comprobando usuario...\n'
+    username=$($MYSQL_CMD -BNe "select user from mysql.user where user like '${SQLA_DB_USER}%'")
+    result=$?
+    if [[ $result == 0 ]] && [[ $username != $SQLA_DB_USER ]]; then
+        create_user
+    elif [[ $result == 0 ]]; then
+        check_user_password
+    else
+        printf 'Error inesperado.\nSaliendo...\n'
+        exit_on_err
+    fi
+}
+
+function grant_user(){
+    printf 'Asignando privilegios...\n'
     $MYSQL_CMD -e "grant all on ${SQLA_DB_NAME}.* to '${SQLA_DB_USER}'@'%'"
-    [[ $? ]] && printf 'No se pudieron asignar privilegios.\nSaliendo...\n' && exit 1
+    [[ $? ]] && printf 'No se pudieron asignar privilegios.\nSaliendo...\n' && exit_on_err
+}
+
+function check_grants(){
+    printf 'Comprobando privilegios...\n'
+    mysql -h${SQLA_DB_HOST} -u${SQLA_DB_USER} -p$(SQLA_DB_PASSWORD) -P${MYSQL_PORT} -e "use $SQLA_DB_NAME"
+    if [[ $? ]]; then
+       grant_user
+   else
+       printf 'privilegios correctos...\n'
+   fi
+}
+
+function userdb_init(){
+    check_username
+    check_user_password
+    check_grants
+}
+
+function database_init(){
+    db_creation
+    userdb_init
 }
 
 function main(){
     if [[ $(check_config) ]]; then
-        source ${VENV_ACTIVATE}
+        #source ${VENV_ACTIVATE}
         database_init
-        init_flask
+        #init_flask
         touch ${PDNSADMIN_CONF_LOCK}
     fi
-    while true; do
-        sleep 10
-        :
-    done
 }
 
 main

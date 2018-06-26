@@ -37,8 +37,12 @@ services:
     build: pdns_admin
     restart: unless-stopped
     env_file: .env
-    ports:
-      - 8083:80
+    volumes:
+      - pdnsadmin0vol:/opt/web/pdns-admin
 
+        # apache:
+        #   volumes:
+        #     - pdnsadmin0vol:/opt/web/pdns-admin
 volumes:
   mariadb0vol:
+  pdnsadmin0vol:
