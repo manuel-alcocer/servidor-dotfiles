@@ -26,32 +26,32 @@ function check_config(){
 
 function flask_db_init(){
     flask db init
-    [[ $? ]] && exit 1
+    (( $? )) && exit 1
 }
 
 function flask_db_migrate(){
     flask db migrate -m "Init DB"
-    [[ $? ]] && exit 1
+    (( $? )) && exit 1
 }
 
 function flask_db_upgrade(){
     flask db upgrade
-    [[ $? ]] && exit 1
+    (( $? )) && exit 1
 }
 
 function init_data(){
     ./init_data.py
-    [[ $? ]] && exit 1
+    (( $? )) && exit 1
 }
 
 function yarn_install(){
     yarn install --pure-lockfile
-    [[ $? ]] && exit 1
+    (( $? )) && exit 1
 }
 
 function build_assets(){
     flask assets build
-    [[ $? ]] && exit 1
+    (( $? )) && exit 1
 }
 
 function init_flask(){
@@ -67,7 +67,7 @@ function init_flask(){
 
 function ping_mysql(){
     $MYSQL_CMD -e ';'
-    [[ $? != 0 ]] && exit_on_err
+    (( $? )) && exit_on_err
 }
 
 function check_db(){
@@ -84,20 +84,20 @@ function db_creation(){
     else
         printf 'Creando la base de datos...\n'
         $MYSQL_CMD -e "create database $SQLA_DB_NAME"
-        [[ $? ]] && printf 'No se pudo crear la base de datos.\nSaliendo...\n' && exit_on_err
+        (( $? )) && printf 'No se pudo crear la base de datos.\nSaliendo...\n' && exit_on_err
     fi
 }
 
 function create_user(){
     printf 'Creando usuario..\n'
-    $MYSQL_CMD -e "create user '${SQLA_DB_USER}'@'%' identified by '${SQLA_DB_PASSWORD}'"
-    [[ $? ]] && printf 'No se pudo crear el usuario.\nSaliendo...\n' && exit_on_err
+    $MYSQL_CMD -e "create user ${SQLA_DB_USER}@'%' identified by '${SQLA_DB_PASSWORD}'"
+    (( $? )) && printf 'No se pudo crear el usuario.\nSaliendo...\n' && exit_on_err
 }
 
 function check_user_password(){
     printf 'Comprobando credenciales de acceso...\n'
     mysql -h${SQLA_DB_HOST} -u${SQLA_DB_USER} -p${SQLA_DB_PASSWORD} -P${MYSQL_PORT} -e ';'
-    if [[ $? ]]; then
+    if (( $? )); then
         create_user
     else
         printf 'El usuario ya existe y tiene password. No hay que crearlo\n'
@@ -121,17 +121,17 @@ function check_username(){
 function grant_user(){
     printf 'Asignando privilegios...\n'
     $MYSQL_CMD -e "grant all on ${SQLA_DB_NAME}.* to '${SQLA_DB_USER}'@'%'"
-    [[ $? ]] && printf 'No se pudieron asignar privilegios.\nSaliendo...\n' && exit_on_err
+    (( $? )) && printf 'No se pudieron asignar privilegios.\nSaliendo...\n' && exit_on_err
 }
 
 function check_grants(){
     printf 'Comprobando privilegios...\n'
-    mysql -h${SQLA_DB_HOST} -u${SQLA_DB_USER} -p$(SQLA_DB_PASSWORD) -P${MYSQL_PORT} -e "use $SQLA_DB_NAME"
-    if [[ $? ]]; then
+    mysql -h${SQLA_DB_HOST} -u${SQLA_DB_USER} -p${SQLA_DB_PASSWORD} -P${MYSQL_PORT} -e "use $SQLA_DB_NAME"
+    if (( $? )); then
        grant_user
-   else
-       printf 'privilegios correctos...\n'
-   fi
+    else
+        printf 'privilegios correctos...\n'
+    fi
 }
 
 function userdb_init(){

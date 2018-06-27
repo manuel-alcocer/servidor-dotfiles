@@ -1,0 +1,12 @@
+# Use root/example as user/password credentials
+version: '3'
+
+services:
+  rancher:
+    container_name: rancher0
+    image: rancher/server:stable
+    restart: unless-stopped
+    volumes:
+      - /root/.ssh:/root/.ssh
+    ports:
+      - 8080:8080
