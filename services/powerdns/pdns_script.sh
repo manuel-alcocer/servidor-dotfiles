@@ -6,7 +6,7 @@ PDNS_SQL_FILE='/usr/share/doc/pdns-backend-mysql/schema.mysql.sql'
 
 PDNS_CMD='/usr/sbin/pdns_server'
 
-# si MAX_RETRIES < 1: espera infinito hasta que haya conexion
+# si MAX_RETRIES < 1: espera infinito hasta que haya conexión
 
 MAX_RETRIES=5
 INTERVAL=2

@@ -32,17 +32,16 @@ services:
     ports:
       - 8080:8080
 
-  pdns_admin:
-    container_name: pdns_admin0
-    build: pdns_admin
+  pdns_admin_test:
+    container_name: pdns_admin_test0
+    build: pdns_admin_test
     restart: unless-stopped
     env_file: .env
     volumes:
       - pdnsadmin0vol:/opt/web/pdns-admin
+    ports:
+      - 9191:9191
 
-        # apache:
-        #   volumes:
-        #     - pdnsadmin0vol:/opt/web/pdns-admin
 volumes:
   mariadb0vol:
   pdnsadmin0vol:
