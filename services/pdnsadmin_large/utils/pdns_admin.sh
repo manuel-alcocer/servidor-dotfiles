@@ -7,12 +7,12 @@ VENV_ACTIVATE="${PDNSADMIN_PATH}/flask/bin/activate"
 MYSQL_CMD="mysql -h${MYSQL_HOST} -u${MYSQL_USER} -p${MYSQL_ROOT_PASSWORD} -P${MYSQL_PORT}"
 
 function exit_on_err(){
-    printf 'script finalizado..\n'
-    exit 1
-    # while true; do
-    #     printf 'script finalizado..\n'
-    #     sleep 10
-    # done
+    printf 'error en el script..\n'
+    #exit 1
+    while true; do
+        sleep 1
+        :
+    done
 }
 
 function flask_db_init(){

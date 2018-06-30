@@ -7,41 +7,53 @@ VENV_ACTIVATE="${PDNSADMIN_PATH}/flask/bin/activate"
 MYSQL_CMD="mysql -h${MYSQL_HOST} -u${MYSQL_USER} -p${MYSQL_ROOT_PASSWORD} -P${MYSQL_PORT}"
 
 function exit_on_err(){
-    # exit 1
+    printf 'error en el script..\n'
+    #exit 1
     while true; do
-        sleep 10
+        sleep 1
         :
     done
 }
 
 function flask_db_init(){
+    printf 'Flask db init...\n'
     flask db init
-    (( $? )) && exit 1
+    (( $? )) && exit_on_err
 }
 
 function flask_db_migrate(){
+    printf 'Flask db migrate...\n'
     flask db migrate -m "Init DB"
-    (( $? )) && exit 1
+    (( $? )) && exit_on_err
 }
 
 function flask_db_upgrade(){
+    printf 'Flask db upgrade...\n'
     flask db upgrade
-    (( $? )) && exit 1
+    (( $? )) && exit_on_err
 }
 
 function init_data(){
+    printf 'Init data py...\n'
     ./init_data.py
-    (( $? )) && exit 1
+    (( $? )) && exit_on_err
 }
 
 function yarn_install(){
+    printf 'yarn install...\n'
     yarn install --pure-lockfile
-    (( $? )) && exit 1
+    (( $? )) && exit_on_err
 }
 
 function build_assets(){
+    printf 'build assets...\n'
     flask assets build
-    (( $? )) && exit 1
+    (( $? )) && exit_on_err
+}
+
+function prepare_files(){
+    cp /root/utils/config.py /opt/web/powerdns-admin
+    cp -r /root/utils /opt/web/powerdns-admin/utils
 }
 
 function init_flask(){
@@ -50,8 +62,10 @@ function init_flask(){
     cd ${PDNSADMIN_PATH}
     [[ -d 'migrations' ]] && rm -rf migrations
     export FLASK_APP=app/__init__.py
+    prepare_files
     flask_db_init
     flask_db_migrate
+    flask_db_upgrade
     init_data
     yarn_install
     build_assets
@@ -62,22 +76,20 @@ function ping_mysql(){
     (( $? )) && exit_on_err
 }
 
-function check_db(){
+function ping_db(){
     $MYSQL_CMD -e "use $SQLA_DB_NAME"
-    echo $?
+    if (( $? )); then
+        printf 'La base de datos no existe.\n'
+    else
+        printf 'La base de datos existe. Borrándola..\n'
+        $MYSQL_CMD -e "drop database ${SQLA_DB_NAME}"
+    fi
 }
 
 function db_creation(){
-    printf 'Haciendo ping a mysql...\n'
-    ping_mysql
-    printf 'Haciendo ping a la base de datos...\n'
-    if [[ $(check_db) == 0 ]]; then
-        printf 'La base de datos existe. No se crea\n'
-    else
-        printf 'Creando la base de datos...\n'
-        $MYSQL_CMD -e "create database $SQLA_DB_NAME"
-        (( $? )) && printf 'No se pudo crear la base de datos.\nSaliendo...\n' && exit_on_err
-    fi
+    printf 'Creando la base de datos...\n'
+    $MYSQL_CMD -e "create database $SQLA_DB_NAME"
+    (( $? )) && printf 'No se pudo crear la base de datos.\nSaliendo...\n' && exit_on_err
 }
 
 function create_user(){
@@ -96,17 +108,14 @@ function check_user_password(){
     fi
 }
 
-function check_username(){
+function check_user_name(){
     printf 'Comprobando usuario...\n'
     username=$($MYSQL_CMD -BNe "select user from mysql.user where user like '${SQLA_DB_USER}%'")
-    result=$?
-    if [[ $result == 0 ]] && [[ $username != $SQLA_DB_USER ]]; then
+    (( $? )) && printf 'Error inesperado.\nSaliendo...\n' && exit_on_err
+    if [[ $username != $SQLA_DB_USER ]]; then
         create_user
-    elif [[ $result == 0 ]]; then
-        check_user_password
     else
-        printf 'Error inesperado.\nSaliendo...\n'
-        exit_on_err
+        check_user_password
     fi
 }
 
@@ -127,24 +136,32 @@ function check_grants(){
 }
 
 function userdb_init(){
-    check_username
+    check_user_name
     check_user_password
     check_grants
 }
 
 function database_init(){
+    printf 'Haciendo ping a mysql...\n'
+    ping_mysql
+    printf 'Haciendo ping a la base de datos...\n'
+    ping_db
+    printf 'Creando la base de datos..\n'
     db_creation
+    printf 'Inicialización del usuario...\n'
     userdb_init
 }
 
 function main(){
+    source ${VENV_ACTIVATE}
     if [[ ! -f ${PDNSADMIN_CONF_LOCK} ]]; then
-        source ${VENV_ACTIVATE}
         database_init
         init_flask
         touch ${PDNSADMIN_CONF_LOCK}
     fi
+    cd ${PDNSADMIN_PATH}
+    printf 'Script finalizado correctamente...\n'
+    ./run.py
 }
 
 main
-exit_on_err

@@ -32,9 +32,9 @@ services:
     ports:
       - 8080:8080
 
-  pdns_admin_test:
-    container_name: pdns_admin_test0
-    build: pdns_admin_test
+  pdns_admin:
+    container_name: pdns_admin0
+    build: pdns_admin
     restart: unless-stopped
     env_file: .env
     volumes:
