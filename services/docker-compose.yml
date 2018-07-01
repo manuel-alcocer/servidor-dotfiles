@@ -1,5 +1,5 @@
 # Use root/example as user/password credentials
-version: '3.6'
+version: '3'
 
 services:
   mariadb:
@@ -10,19 +10,7 @@ services:
     volumes:
       - mariadb0vol:/var/lib/mysql
     ports:
-      - 3306:3306
-
-  powerdns:
-    container_name: pdns_server0
-    build: powerdns
-    restart: unless-stopped
-    env_file: .env
-    depends_on:
-      - mariadb
-    ports:
-      - 53:53/tcp
-      - 53:53/udp
-      - 8081:8081
+      - "3306:3306"
 
   adminer:
     container_name: adminer0
@@ -30,18 +18,49 @@ services:
     restart: unless-stopped
     env_file: .env
     ports:
-      - 8080:8080
+      - "8080:8080"
+    depends_on:
+      - mariadb
 
-  pdns_admin:
-    container_name: pdns_admin0
-    build: pdns_admin
+  powerdns:
+    container_name: pdns_server0
+    env_file: .env
+    build:
+      context: ../builders/powerdns
+      args:
+        - PDNS_DB
+        - PDNS_USER
+        - PDNS_USER_PASSWD
+        - PDNS_API_KEY
+        - PDNS_WEB_PORT
+        - PDNS_WEB_PASSWD
+    restart: unless-stopped
+    depends_on:
+      - mariadb
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "8081:8081"
+
+  powerdns_admin:
+    container_name: powerdns_admin0
+    build:
+      context: ../builders/powerdns-admin
+      target: powerdns-admin:my_built
+    image: powerdns-admin:my_built
     restart: unless-stopped
     env_file: .env
-    volumes:
-      - pdnsadmin0vol:/opt/web/pdns-admin
+    environment:
+      - LC_ALL=C.UTF-8
+      - LANG=C.UTF-8
+      - FLASK_APP=app/__init__.py
+    entrypoint:
+      - bin/bash
+      - /root/utils/pdns_admin.sh
     ports:
-      - 9191:9191
+      - "9191:9191"
+    depends_on:
+      - mariadb
 
 volumes:
   mariadb0vol:
-  pdnsadmin0vol:
