@@ -8,11 +8,11 @@ MYSQL_CMD="mysql -h${MYSQL_HOST} -u${MYSQL_USER} -p${MYSQL_ROOT_PASSWORD} -P${MY
 
 function exit_on_err(){
     printf 'error en el script..\n'
-    #exit 1
     while true; do
         sleep 1
         :
     done
+    exit 1
 }
 
 function flask_db_init(){
@@ -52,23 +52,9 @@ function build_assets(){
 }
 
 function prepare_files(){
-    cp /root/utils/config.py /opt/web/powerdns-admin
-    cp -r /root/utils /opt/web/powerdns-admin/utils
-}
-
-function init_flask(){
-    export LC_ALL=C.UTF-8
-    export LANG=C.UTF-8
-    cd ${PDNSADMIN_PATH}
-    [[ -d 'migrations' ]] && rm -rf migrations
-    export FLASK_APP=app/__init__.py
-    prepare_files
-    flask_db_init
-    flask_db_migrate
-    flask_db_upgrade
-    init_data
-    yarn_install
-    build_assets
+    cp -a /root/utils/config.py /opt/web/powerdns-admin
+    cp -ar /root/utils /opt/web/powerdns-admin/utils
+    cp -a /root/utils/powerdnsadmin.wsgi /opt/web/powerdns-admin
 }
 
 function ping_mysql(){
@@ -142,6 +128,8 @@ function userdb_init(){
 }
 
 function database_init(){
+    printf 'Instalando paquetes necesarios...\n'
+    apk --update add --no-cache mariadb-client
     printf 'Haciendo ping a mysql...\n'
     ping_mysql
     printf 'Haciendo ping a la base de datos...\n'
@@ -150,18 +138,38 @@ function database_init(){
     db_creation
     printf 'Inicialización del usuario...\n'
     userdb_init
+    printf 'Eliminando paquetes innecesarios...\n'
+    apk --update del --no-cache mariadb-client
+}
+
+function flask_init(){
+    [[ -d 'migrations' ]] && rm -rf migrations
+    prepare_files
+    flask_db_init
+    flask_db_migrate
+    flask_db_upgrade
+    init_data
+    yarn_install
+    build_assets
 }
 
 function main(){
     source ${VENV_ACTIVATE}
+    cd ${PDNSADMIN_PATH}
     if [[ ! -f ${PDNSADMIN_CONF_LOCK} ]]; then
         database_init
-        init_flask
+        flask_init
         touch ${PDNSADMIN_CONF_LOCK}
     fi
-    cd ${PDNSADMIN_PATH}
     printf 'Script finalizado correctamente...\n'
-    ./run.py
 }
 
 main
+
+printf 'Lanzando demonio...\n'
+
+uwsgi --plugin /usr/lib/uwsgi/python3_plugin.so \
+    --http-socket 0.0.0.0:9191 \
+    --wsgi-file /opt/web/powerdns-admin/powerdnsadmin.wsgi \
+    --enable-threads \
+    --venv /opt/web/powerdns-admin/flask/

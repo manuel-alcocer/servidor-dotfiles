@@ -1,5 +1,5 @@
 # Use root/example as user/password credentials
-version: '3'
+version: '3.6'
 
 services:
   mariadb:
@@ -26,7 +26,7 @@ services:
     container_name: pdns_server0
     env_file: .env
     build:
-      context: ../builders/powerdns
+      context: ./builders/powerdns
       args:
         - PDNS_DB
         - PDNS_USER
@@ -42,12 +42,11 @@ services:
       - "53:53/udp"
       - "8081:8081"
 
-  powerdns_admin:
-    container_name: powerdns_admin0
+  powerdnsadmin:
     build:
-      context: ../builders/powerdns-admin
-      target: powerdns-admin:my_built
-    image: powerdns-admin:my_built
+      context: ./builders/powerdnsadmin
+      dockerfile: Dockerfile
+    image: powerdnsadmin:latest
     restart: unless-stopped
     env_file: .env
     environment:

@@ -15,9 +15,9 @@ FROM alpine:3.7
 
 LABEl Maintainer Manuel Alcocer Jiménez <manuel@alcocer.net>
 
-COPY --from=pdnsadmin_builder /opt/web /opt/web/
-
-ADD utils /root/utils/
-
 RUN apk --update add --no-cache bash mariadb-client-libs yarn python3-dev openldap-dev \
-    mariadb-client
+    mariadb-client uwsgi-python3 && addgroup pdnsadmin && adduser -DG pdnsadmin pdnsadmin
+
+ADD --chown=pdnsadmin:pdnsadmin utils /root/utils/
+
+COPY --from=pdnsadmin_builder --chown=pdnsadmin:pdnsadmin /opt/web /opt/web/
