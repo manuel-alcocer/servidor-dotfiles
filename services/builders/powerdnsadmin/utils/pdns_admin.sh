@@ -172,4 +172,5 @@ uwsgi --plugin /usr/lib/uwsgi/python3_plugin.so \
     --http-socket 0.0.0.0:9191 \
     --wsgi-file /opt/web/powerdns-admin/powerdnsadmin.wsgi \
     --enable-threads \
-    --venv /opt/web/powerdns-admin/flask/
+    --venv /opt/web/powerdns-admin/flask/ \
+    --uid pdnsadmin --gid pdnsadmin

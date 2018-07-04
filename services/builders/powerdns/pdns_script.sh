@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 MYSQL_CMD="mysql -h${MYSQL_HOST} -u${MYSQL_USER} -p${MYSQL_ROOT_PASSWORD} -P${MYSQL_PORT}"
 
-PDNS_SQL_FILE='/usr/share/doc/pdns-backend-mysql/schema.mysql.sql'
+PDNS_SQL_FILE='/usr/share/doc/pdns/schema.mysql.sql'
 
 PDNS_CMD='/usr/sbin/pdns_server'
 
@@ -62,6 +62,7 @@ function dump_db(){
 }
 
 function populate_mysql(){
+    printf 'Inicialización de la base de datos de PowerDNS...\n'
     if [[ -f "${PDNS_SQL_FILE}" ]]; then
         printf 'Creando la base de datos %s...\n' "${PDNS_DB}"
         create_pdns_db
@@ -103,6 +104,8 @@ function main(){
         printf 'No hay conexión con el servicio de base de datos.\nSaliendo...\n'
         exit 1
     else
+        printf 'Hay conexión a MySQL...\n'
+        printf 'Haciendo ping a la base de datos de PowerDNS...\n'
         ! ping_db && populate_mysql
     fi
     [[ $1 == 'start' ]] && launch

@@ -34,7 +34,12 @@ services:
         - PDNS_API_KEY
         - PDNS_WEB_PORT
         - PDNS_WEB_PASSWD
+    image: powerdns:built
     restart: unless-stopped
+    entrypoint:
+      - /bin/bash
+      - /root/pdns_script.sh
+      - start
     depends_on:
       - mariadb
     ports:
@@ -43,6 +48,7 @@ services:
       - "8081:8081"
 
   powerdnsadmin:
+    container_name: powerdnsadmin0
     build:
       context: ./builders/powerdnsadmin
       dockerfile: Dockerfile
