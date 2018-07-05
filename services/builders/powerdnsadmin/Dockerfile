@@ -10,14 +10,17 @@ RUN apk --update add --no-cache --virtual pdnsadmin-builder \
     virtualenv -p python3 flask && . ./flask/bin/activate && \
     pip3 --no-cache-dir install -r requirements.txt
 
-
 FROM alpine:3.7
 
 LABEl Maintainer Manuel Alcocer Jiménez <manuel@alcocer.net>
 
-RUN apk --update add --no-cache bash mariadb-client-libs yarn python3-dev openldap-dev \
-    mariadb-client uwsgi-python3 && addgroup pdnsadmin && adduser -DG pdnsadmin pdnsadmin
+ARG PDNSADMIN_UID
+ARG PDNSADMIN_GID
 
-ADD --chown=pdnsadmin:pdnsadmin utils /root/utils/
+RUN apk --update add --no-cache bash mariadb-client-libs \
+    yarn python3-dev openldap-dev uwsgi-python3 && \
+    addgroup pdnsadmin && adduser -DG pdnsadmin pdnsadmin
 
 COPY --from=pdnsadmin_builder --chown=pdnsadmin:pdnsadmin /opt/web /opt/web/
+
+ADD --chown=pdnsadmin:pdnsadmin utils /opt/web/powerdns-admin/

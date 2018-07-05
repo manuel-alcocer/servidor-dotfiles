@@ -4,4 +4,4 @@ LABEl Maintainer Manuel Alcocer Jiménez <manuel@alcocer.net>
 
 RUN apk --update add --no-cache bash pdns pdns-backend-mysql pdns-doc mariadb-client
 
-ADD pdns_script.sh /root/
+ADD daemon.sh /root/

@@ -38,7 +38,7 @@ services:
     restart: unless-stopped
     entrypoint:
       - /bin/bash
-      - /root/pdns_script.sh
+      - /root/daemon.sh
       - start
     depends_on:
       - mariadb
@@ -52,7 +52,7 @@ services:
     build:
       context: ./builders/powerdnsadmin
       dockerfile: Dockerfile
-    image: powerdnsadmin:latest
+    image: powerdnsadmin:built
     restart: unless-stopped
     env_file: .env
     environment:
@@ -61,11 +61,32 @@ services:
       - FLASK_APP=app/__init__.py
     entrypoint:
       - bin/bash
-      - /root/utils/pdns_admin.sh
+      - /opt/web/powerdns-admin/daemon.sh
     ports:
       - "9191:9191"
     depends_on:
       - mariadb
+    volumes:
+      - powerdnsadmin0vol:/opt/web/powerdns-admin
+
+  nginx:
+    container_name: nginx0
+    build:
+      context: ./builders/nginx
+      dockerfile: Dockerfile
+    image: nginx:built
+    restart: unless-stopped
+    env_file: .env
+    entrypoint:
+      - /bin/bash
+      - /root/daemon.sh
+    ports:
+      - "80:80"
+    depends_on:
+      - powerdnsadmin
+    volumes:
+      - powerdnsadmin0vol:/opt/web/powerdns-admin
 
 volumes:
   mariadb0vol:
+  powerdnsadmin0vol:

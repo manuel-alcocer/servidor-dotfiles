@@ -1,17 +1,13 @@
 #!/bin/bash
 
-PDNSADMIN_CONF_LOCK='/root/pdns_admin_config.lock'
 PDNSADMIN_PATH='/opt/web/powerdns-admin'
+PDNSADMIN_CONF_LOCK="${PDNSADMIN_PATH}/pdns_admin_config.lock"
 VENV_ACTIVATE="${PDNSADMIN_PATH}/flask/bin/activate"
 
 MYSQL_CMD="mysql -h${MYSQL_HOST} -u${MYSQL_USER} -p${MYSQL_ROOT_PASSWORD} -P${MYSQL_PORT}"
 
 function exit_on_err(){
     printf 'error en el script..\n'
-    while true; do
-        sleep 1
-        :
-    done
     exit 1
 }
 
@@ -49,12 +45,6 @@ function build_assets(){
     printf 'build assets...\n'
     flask assets build
     (( $? )) && exit_on_err
-}
-
-function prepare_files(){
-    cp -a /root/utils/config.py /opt/web/powerdns-admin
-    cp -ar /root/utils /opt/web/powerdns-admin/utils
-    cp -a /root/utils/powerdnsadmin.wsgi /opt/web/powerdns-admin
 }
 
 function ping_mysql(){
@@ -144,7 +134,6 @@ function database_init(){
 
 function flask_init(){
     [[ -d 'migrations' ]] && rm -rf migrations
-    prepare_files
     flask_db_init
     flask_db_migrate
     flask_db_upgrade
@@ -160,6 +149,8 @@ function main(){
         database_init
         flask_init
         touch ${PDNSADMIN_CONF_LOCK}
+        print 'Ajustando propietario...\n' >&2
+        chown -R pdnsadmin:pdnsadmin ${PDNSADMIN_PATH}
     fi
     printf 'Script finalizado correctamente...\n'
 }
@@ -169,7 +160,7 @@ main
 printf 'Lanzando demonio...\n'
 
 uwsgi --plugin /usr/lib/uwsgi/python3_plugin.so \
-    --http-socket 0.0.0.0:9191 \
+    --http-socket 0.0.0.0:${PDNSADMIN_PORT} \
     --wsgi-file /opt/web/powerdns-admin/powerdnsadmin.wsgi \
     --enable-threads \
     --venv /opt/web/powerdns-admin/flask/ \
