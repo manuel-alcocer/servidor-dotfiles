@@ -69,24 +69,6 @@ services:
     volumes:
       - powerdnsadmin0vol:/opt/web/powerdns-admin
 
-  nginx:
-    container_name: nginx0
-    build:
-      context: ./builders/nginx
-      dockerfile: Dockerfile
-    image: nginx:built
-    restart: unless-stopped
-    env_file: .env
-    entrypoint:
-      - /bin/bash
-      - /root/daemon.sh
-    ports:
-      - "80:80"
-    depends_on:
-      - powerdnsadmin
-    volumes:
-      - powerdnsadmin0vol:/opt/web/powerdns-admin
-
 volumes:
   mariadb0vol:
   powerdnsadmin0vol:
