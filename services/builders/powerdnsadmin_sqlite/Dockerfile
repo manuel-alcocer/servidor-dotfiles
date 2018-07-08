@@ -14,11 +14,14 @@ FROM alpine:3.7
 
 LABEl Maintainer Manuel Alcocer Jiménez <manuel@alcocer.net>
 
-RUN apk --update add --no-cache bash mariadb-client-libs \
-    yarn python3-dev openldap-dev uwsgi-python3 && \
-    addgroup pdnsadmin && adduser -DG pdnsadmin pdnsadmin
-
-COPY --from=pdnsadmin_builder --chown=pdnsadmin:pdnsadmin \
+COPY --from=pdnsadmin_builder --chown=10000:10000 \
         /opt/web/powerdns-admin /opt/web/powerdns-admin/
 
-ADD --chown=pdnsadmin:pdnsadmin daemon /opt/web/daemon/
+ADD --chown=10000:10000 daemon /opt/web/daemon/
+
+RUN apk --update add --no-cache bash mariadb-client-libs \
+    yarn python3-dev openldap-dev uwsgi-python3 && \
+    /bin/bash /opt/web/daemon/daemon.sh && \
+    apk --no-cache del yarn python3-dev openldap-dev
+
+

@@ -8,6 +8,10 @@ MYSQL_CMD="mysql -h${MYSQL_HOST} -u${MYSQL_USER} -p${MYSQL_ROOT_PASSWORD} -P${MY
 
 function exit_on_err(){
     printf 'error en el script..\n'
+    while true; do
+        printf 'error en el script...\n'
+        sleep 2
+    done
     exit 1
 }
 
@@ -146,10 +150,11 @@ function main(){
     source ${VENV_ACTIVATE}
     cd ${PDNSADMIN_PATH}
     if [[ ! -f ${PDNSADMIN_CONF_LOCK} ]]; then
+        cp /opt/web/daemon/config.py ${PDNSADMIN_PATH}
         database_init
         flask_init
         touch ${PDNSADMIN_CONF_LOCK}
-        print 'Ajustando propietario...\n' >&2
+        printf 'Ajustando propietario...\n' >&2
         chown -R pdnsadmin:pdnsadmin ${PDNSADMIN_PATH}
     fi
     printf 'Script finalizado correctamente...\n'
@@ -161,7 +166,8 @@ printf 'Lanzando demonio...\n'
 
 uwsgi --plugin /usr/lib/uwsgi/python3_plugin.so \
     --http-socket 0.0.0.0:${PDNSADMIN_PORT} \
-    --wsgi-file /opt/web/powerdns-admin/powerdnsadmin.wsgi \
+    --wsgi-file /opt/web/daemon/powerdnsadmin.wsgi \
     --enable-threads \
     --venv /opt/web/powerdns-admin/flask/ \
     --uid pdnsadmin --gid pdnsadmin
+
