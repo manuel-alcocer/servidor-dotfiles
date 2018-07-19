@@ -1,0 +1,11 @@
+version: '3.6'
+
+services:
+  ldap:
+    container_name: ldap
+    build:
+      context: builders/openldap
+    image: user/ldap
+    ports:
+      - "389:389"
+      - "636:636"

@@ -22,6 +22,21 @@ services:
     depends_on:
       - mariadb
 
+  openldap:
+    container_name: openldap
+    build:
+      context: builders/openldap
+    image: user/ldap
+    restart: unless-stopped
+    ports:
+      - "389:389"
+      - "389:389/udp"
+    entrypoint:
+      - /bin/bash
+      - /etc/openldap/daemon.sh
+    secrets:
+      - openldap_pw
+
   powerdns:
     container_name: pdns_server0
     env_file: .env
@@ -88,3 +103,7 @@ services:
 
 volumes:
   mariadb0vol:
+
+secrets:
+  openldap_pw:
+    file: ./builders/openldap/openldap_pw.txt
