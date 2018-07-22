@@ -7,7 +7,7 @@ if [[ ! -z $COMPOSEFILE ]]; then
 fi
 
 docker-compose $ARGS stop
-docker rm $(docker-compose $ARGS ps -q)
-docker images rm $(docker-compose $ARGS images -q)
+docker rm $(docker ps -aq)
+docker images rm $(docker image ls -aq)
 docker volume rm $(docker volume ls -q)
 docker network prune

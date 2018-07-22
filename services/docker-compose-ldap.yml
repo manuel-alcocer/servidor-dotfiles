@@ -10,7 +10,7 @@ services:
       - "389:389"
       - "636:636"
     environment:
-      #- INIT_DB=1
+      - INIT_DB=1
       - SUFFIX="dc=alcocer,dc=net"
       - ROOTPW="root"
       - ROOTDN="cn=admin,dc=alcocer,dc=net"

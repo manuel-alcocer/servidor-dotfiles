@@ -7,11 +7,9 @@
 # Variables de entorno admitidas:
 #
 # SI NO EXISTE BBDD o NO SE PASA RESTAURACIÓN:
-#   OBLIGATORIAS:
 #       - SUFFIX
 #       - ROOTDN
 #       - ROOTPW
-#   OPCIONAL:
 #       - INIT_DB: Si es establecida se fuerza a la inicialización de
 #                   la BBDD en cada arranque del contenedor.
 #
@@ -24,10 +22,8 @@ PID_DIR='/run/openldap/'
 SLAPD_CONF='/etc/openldap/slapd.conf'
 DB_CONFIG='/var/lib/openldap/openldap-data/DB_CONFIG'
 
-# Opciones por defecto en caso de no pasar ninguna
-if [[ -z $OPTS ]]; then
-    OPTS="-h ldap:/// ldapi:///"
-fi
+# Opciones adicionales
+OPTS=""
 
 function check_dirs(){
     [[ ! -d $PID_DIR ]] && mkdir $PID_DIR
@@ -106,6 +102,7 @@ function main(){
 main
 
 printf 'Lanzando demonio...\n'
-/usr/sbin/slapd -u ldap -g ldap -d${DEBUG_MODE:-256} $OPTS
+/usr/sbin/slapd -u ldap -g ldap -d${DEBUG_MODE:-256} \
+    -h "ldapi://%2Frun%2Fopenldap%2Fldapi ldap:///"
+    $OPTS
 
-date > $SLAPD_DB_DIR
