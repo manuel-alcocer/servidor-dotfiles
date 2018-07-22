@@ -14,9 +14,15 @@ services:
       - SUFFIX="dc=alcocer,dc=net"
       - ROOTPW="root"
       - ROOTDN="cn=admin,dc=alcocer,dc=net"
+        #- RESTORE_CONF_ALWAYS=1
+        #- RESTORE_DB_ALWAYS=1
     volumes:
-      - slapd_db:/etc/openldap/slapd.d
+      - slapd_db:/etc/openldap
+      - slapd_var:/var/lib/openldap
+      - /root/ldap_backup/ldap-config.ldif:/restore-config.ldif:ro
+      - /root/ldap_backup/ldap-database.ldif:/restore-database.ldif:ro
 
 volumes:
   slapd_db:
+  slapd_var:
 
