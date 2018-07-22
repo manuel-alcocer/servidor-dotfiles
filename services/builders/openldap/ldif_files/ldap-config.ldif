@@ -1,0 +1,1074 @@
+dn: cn=config
+objectClass: olcGlobal
+cn: config
+olcArgsFile: /run/openldap/slapd.args
+olcLogLevel: none
+olcPidFile: /run/openldap/slapd.pid
+olcToolThreads: 1
+structuralObjectClass: olcGlobal
+entryUUID: eabe5e24-b3d4-1037-8b74-3569e2a942b6
+creatorsName: cn=config
+createTimestamp: 20180304085104Z
+entryCSN: 20180310174507.958424Z#000000#000#000000
+modifiersName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+modifyTimestamp: 20180310174507Z
+
+dn: cn=module{0},cn=config
+objectClass: olcModuleList
+cn: module{0}
+olcModulePath: /usr/lib/openldap
+olcModuleLoad: {0}back_mdb.so
+olcModuleLoad: {1}accesslog.so
+olcModuleLoad: {2}syncprov.so
+olcModuleLoad: {3}valsort.so
+structuralObjectClass: olcModuleList
+entryUUID: eabf24b2-b3d4-1037-8b7c-3569e2a942b6
+creatorsName: cn=admin,cn=config
+createTimestamp: 20180304085104Z
+entryCSN: 20180306084144.295813Z#000000#000#000000
+modifiersName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+modifyTimestamp: 20180306084144Z
+
+dn: cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: schema
+structuralObjectClass: olcSchemaConfig
+entryUUID: eabe7dc8-b3d4-1037-8b77-3569e2a942b6
+creatorsName: cn=admin,cn=config
+createTimestamp: 20180304085104Z
+entryCSN: 20180304085104.687728Z#000000#000#000000
+modifiersName: cn=admin,cn=config
+modifyTimestamp: 20180304085104Z
+
+dn: cn={0}core,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: {0}core
+olcAttributeTypes: {0}( 2.5.4.2 NAME 'knowledgeInformation' DESC 'RFC2256: k
+ nowledge information' EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.1.1466.115.
+ 121.1.15{32768} )
+olcAttributeTypes: {1}( 2.5.4.4 NAME ( 'sn' 'surname' ) DESC 'RFC2256: last 
+ (family) name(s) for which the entity is known by' SUP name )
+olcAttributeTypes: {2}( 2.5.4.5 NAME 'serialNumber' DESC 'RFC2256: serial nu
+ mber of the entity' EQUALITY caseIgnoreMatch SUBSTR caseIgnoreSubstringsMat
+ ch SYNTAX 1.3.6.1.4.1.1466.115.121.1.44{64} )
+olcAttributeTypes: {3}( 2.5.4.6 NAME ( 'c' 'countryName' ) DESC 'RFC4519: tw
+ o-letter ISO-3166 country code' SUP name SYNTAX 1.3.6.1.4.1.1466.115.121.1.
+ 11 SINGLE-VALUE )
+olcAttributeTypes: {4}( 2.5.4.7 NAME ( 'l' 'localityName' ) DESC 'RFC2256: l
+ ocality which this object resides in' SUP name )
+olcAttributeTypes: {5}( 2.5.4.8 NAME ( 'st' 'stateOrProvinceName' ) DESC 'RF
+ C2256: state or province which this object resides in' SUP name )
+olcAttributeTypes: {6}( 2.5.4.9 NAME ( 'street' 'streetAddress' ) DESC 'RFC2
+ 256: street address of this object' EQUALITY caseIgnoreMatch SUBSTR caseIgn
+ oreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{128} )
+olcAttributeTypes: {7}( 2.5.4.10 NAME ( 'o' 'organizationName' ) DESC 'RFC22
+ 56: organization this object belongs to' SUP name )
+olcAttributeTypes: {8}( 2.5.4.11 NAME ( 'ou' 'organizationalUnitName' ) DESC
+  'RFC2256: organizational unit this object belongs to' SUP name )
+olcAttributeTypes: {9}( 2.5.4.12 NAME 'title' DESC 'RFC2256: title associate
+ d with the entity' SUP name )
+olcAttributeTypes: {10}( 2.5.4.14 NAME 'searchGuide' DESC 'RFC2256: search g
+ uide, deprecated by enhancedSearchGuide' SYNTAX 1.3.6.1.4.1.1466.115.121.1.
+ 25 )
+olcAttributeTypes: {11}( 2.5.4.15 NAME 'businessCategory' DESC 'RFC2256: bus
+ iness category' EQUALITY caseIgnoreMatch SUBSTR caseIgnoreSubstringsMatch S
+ YNTAX 1.3.6.1.4.1.1466.115.121.1.15{128} )
+olcAttributeTypes: {12}( 2.5.4.16 NAME 'postalAddress' DESC 'RFC2256: postal
+  address' EQUALITY caseIgnoreListMatch SUBSTR caseIgnoreListSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.41 )
+olcAttributeTypes: {13}( 2.5.4.17 NAME 'postalCode' DESC 'RFC2256: postal co
+ de' EQUALITY caseIgnoreMatch SUBSTR caseIgnoreSubstringsMatch SYNTAX 1.3.6.
+ 1.4.1.1466.115.121.1.15{40} )
+olcAttributeTypes: {14}( 2.5.4.18 NAME 'postOfficeBox' DESC 'RFC2256: Post O
+ ffice Box' EQUALITY caseIgnoreMatch SUBSTR caseIgnoreSubstringsMatch SYNTAX
+  1.3.6.1.4.1.1466.115.121.1.15{40} )
+olcAttributeTypes: {15}( 2.5.4.19 NAME 'physicalDeliveryOfficeName' DESC 'RF
+ C2256: Physical Delivery Office Name' EQUALITY caseIgnoreMatch SUBSTR caseI
+ gnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{128} )
+olcAttributeTypes: {16}( 2.5.4.20 NAME 'telephoneNumber' DESC 'RFC2256: Tele
+ phone Number' EQUALITY telephoneNumberMatch SUBSTR telephoneNumberSubstring
+ sMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.50{32} )
+olcAttributeTypes: {17}( 2.5.4.21 NAME 'telexNumber' DESC 'RFC2256: Telex Nu
+ mber' SYNTAX 1.3.6.1.4.1.1466.115.121.1.52 )
+olcAttributeTypes: {18}( 2.5.4.22 NAME 'teletexTerminalIdentifier' DESC 'RFC
+ 2256: Teletex Terminal Identifier' SYNTAX 1.3.6.1.4.1.1466.115.121.1.51 )
+olcAttributeTypes: {19}( 2.5.4.23 NAME ( 'facsimileTelephoneNumber' 'fax' ) 
+ DESC 'RFC2256: Facsimile (Fax) Telephone Number' SYNTAX 1.3.6.1.4.1.1466.11
+ 5.121.1.22 )
+olcAttributeTypes: {20}( 2.5.4.24 NAME 'x121Address' DESC 'RFC2256: X.121 Ad
+ dress' EQUALITY numericStringMatch SUBSTR numericStringSubstringsMatch SYNT
+ AX 1.3.6.1.4.1.1466.115.121.1.36{15} )
+olcAttributeTypes: {21}( 2.5.4.25 NAME 'internationaliSDNNumber' DESC 'RFC22
+ 56: international ISDN number' EQUALITY numericStringMatch SUBSTR numericSt
+ ringSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.36{16} )
+olcAttributeTypes: {22}( 2.5.4.26 NAME 'registeredAddress' DESC 'RFC2256: re
+ gistered postal address' SUP postalAddress SYNTAX 1.3.6.1.4.1.1466.115.121.
+ 1.41 )
+olcAttributeTypes: {23}( 2.5.4.27 NAME 'destinationIndicator' DESC 'RFC2256:
+  destination indicator' EQUALITY caseIgnoreMatch SUBSTR caseIgnoreSubstring
+ sMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.44{128} )
+olcAttributeTypes: {24}( 2.5.4.28 NAME 'preferredDeliveryMethod' DESC 'RFC22
+ 56: preferred delivery method' SYNTAX 1.3.6.1.4.1.1466.115.121.1.14 SINGLE-
+ VALUE )
+olcAttributeTypes: {25}( 2.5.4.29 NAME 'presentationAddress' DESC 'RFC2256: 
+ presentation address' EQUALITY presentationAddressMatch SYNTAX 1.3.6.1.4.1.
+ 1466.115.121.1.43 SINGLE-VALUE )
+olcAttributeTypes: {26}( 2.5.4.30 NAME 'supportedApplicationContext' DESC 'R
+ FC2256: supported application context' EQUALITY objectIdentifierMatch SYNTA
+ X 1.3.6.1.4.1.1466.115.121.1.38 )
+olcAttributeTypes: {27}( 2.5.4.31 NAME 'member' DESC 'RFC2256: member of a g
+ roup' SUP distinguishedName )
+olcAttributeTypes: {28}( 2.5.4.32 NAME 'owner' DESC 'RFC2256: owner (of the 
+ object)' SUP distinguishedName )
+olcAttributeTypes: {29}( 2.5.4.33 NAME 'roleOccupant' DESC 'RFC2256: occupan
+ t of role' SUP distinguishedName )
+olcAttributeTypes: {30}( 2.5.4.36 NAME 'userCertificate' DESC 'RFC2256: X.50
+ 9 user certificate, use ;binary' EQUALITY certificateExactMatch SYNTAX 1.3.
+ 6.1.4.1.1466.115.121.1.8 )
+olcAttributeTypes: {31}( 2.5.4.37 NAME 'cACertificate' DESC 'RFC2256: X.509 
+ CA certificate, use ;binary' EQUALITY certificateExactMatch SYNTAX 1.3.6.1.
+ 4.1.1466.115.121.1.8 )
+olcAttributeTypes: {32}( 2.5.4.38 NAME 'authorityRevocationList' DESC 'RFC22
+ 56: X.509 authority revocation list, use ;binary' SYNTAX 1.3.6.1.4.1.1466.1
+ 15.121.1.9 )
+olcAttributeTypes: {33}( 2.5.4.39 NAME 'certificateRevocationList' DESC 'RFC
+ 2256: X.509 certificate revocation list, use ;binary' SYNTAX 1.3.6.1.4.1.14
+ 66.115.121.1.9 )
+olcAttributeTypes: {34}( 2.5.4.40 NAME 'crossCertificatePair' DESC 'RFC2256:
+  X.509 cross certificate pair, use ;binary' SYNTAX 1.3.6.1.4.1.1466.115.121
+ .1.10 )
+olcAttributeTypes: {35}( 2.5.4.42 NAME ( 'givenName' 'gn' ) DESC 'RFC2256: f
+ irst name(s) for which the entity is known by' SUP name )
+olcAttributeTypes: {36}( 2.5.4.43 NAME 'initials' DESC 'RFC2256: initials of
+  some or all of names, but not the surname(s).' SUP name )
+olcAttributeTypes: {37}( 2.5.4.44 NAME 'generationQualifier' DESC 'RFC2256: 
+ name qualifier indicating a generation' SUP name )
+olcAttributeTypes: {38}( 2.5.4.45 NAME 'x500UniqueIdentifier' DESC 'RFC2256:
+  X.500 unique identifier' EQUALITY bitStringMatch SYNTAX 1.3.6.1.4.1.1466.1
+ 15.121.1.6 )
+olcAttributeTypes: {39}( 2.5.4.46 NAME 'dnQualifier' DESC 'RFC2256: DN quali
+ fier' EQUALITY caseIgnoreMatch ORDERING caseIgnoreOrderingMatch SUBSTR case
+ IgnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.44 )
+olcAttributeTypes: {40}( 2.5.4.47 NAME 'enhancedSearchGuide' DESC 'RFC2256: 
+ enhanced search guide' SYNTAX 1.3.6.1.4.1.1466.115.121.1.21 )
+olcAttributeTypes: {41}( 2.5.4.48 NAME 'protocolInformation' DESC 'RFC2256: 
+ protocol information' EQUALITY protocolInformationMatch SYNTAX 1.3.6.1.4.1.
+ 1466.115.121.1.42 )
+olcAttributeTypes: {42}( 2.5.4.50 NAME 'uniqueMember' DESC 'RFC2256: unique 
+ member of a group' EQUALITY uniqueMemberMatch SYNTAX 1.3.6.1.4.1.1466.115.1
+ 21.1.34 )
+olcAttributeTypes: {43}( 2.5.4.51 NAME 'houseIdentifier' DESC 'RFC2256: hous
+ e identifier' EQUALITY caseIgnoreMatch SUBSTR caseIgnoreSubstringsMatch SYN
+ TAX 1.3.6.1.4.1.1466.115.121.1.15{32768} )
+olcAttributeTypes: {44}( 2.5.4.52 NAME 'supportedAlgorithms' DESC 'RFC2256: 
+ supported algorithms' SYNTAX 1.3.6.1.4.1.1466.115.121.1.49 )
+olcAttributeTypes: {45}( 2.5.4.53 NAME 'deltaRevocationList' DESC 'RFC2256: 
+ delta revocation list; use ;binary' SYNTAX 1.3.6.1.4.1.1466.115.121.1.9 )
+olcAttributeTypes: {46}( 2.5.4.54 NAME 'dmdName' DESC 'RFC2256: name of DMD'
+  SUP name )
+olcAttributeTypes: {47}( 2.5.4.65 NAME 'pseudonym' DESC 'X.520(4th): pseudon
+ ym for the object' SUP name )
+olcAttributeTypes: {48}( 0.9.2342.19200300.100.1.3 NAME ( 'mail' 'rfc822Mail
+ box' ) DESC 'RFC1274: RFC822 Mailbox'   EQUALITY caseIgnoreIA5Match   SUBST
+ R caseIgnoreIA5SubstringsMatch   SYNTAX 1.3.6.1.4.1.1466.115.121.1.26{256} 
+ )
+olcAttributeTypes: {49}( 0.9.2342.19200300.100.1.25 NAME ( 'dc' 'domainCompo
+ nent' ) DESC 'RFC1274/2247: domain component' EQUALITY caseIgnoreIA5Match S
+ UBSTR caseIgnoreIA5SubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SIN
+ GLE-VALUE )
+olcAttributeTypes: {50}( 0.9.2342.19200300.100.1.37 NAME 'associatedDomain' 
+ DESC 'RFC1274: domain associated with object' EQUALITY caseIgnoreIA5Match S
+ UBSTR caseIgnoreIA5SubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 )
+olcAttributeTypes: {51}( 1.2.840.113549.1.9.1 NAME ( 'email' 'emailAddress' 
+ 'pkcs9email' ) DESC 'RFC3280: legacy attribute for email addresses in DNs' 
+ EQUALITY caseIgnoreIA5Match SUBSTR caseIgnoreIA5SubstringsMatch SYNTAX 1.3.
+ 6.1.4.1.1466.115.121.1.26{128} )
+olcObjectClasses: {0}( 2.5.6.2 NAME 'country' DESC 'RFC2256: a country' SUP 
+ top STRUCTURAL MUST c MAY ( searchGuide $ description ) )
+olcObjectClasses: {1}( 2.5.6.3 NAME 'locality' DESC 'RFC2256: a locality' SU
+ P top STRUCTURAL MAY ( street $ seeAlso $ searchGuide $ st $ l $ descriptio
+ n ) )
+olcObjectClasses: {2}( 2.5.6.4 NAME 'organization' DESC 'RFC2256: an organiz
+ ation' SUP top STRUCTURAL MUST o MAY ( userPassword $ searchGuide $ seeAlso
+  $ businessCategory $ x121Address $ registeredAddress $ destinationIndicato
+ r $ preferredDeliveryMethod $ telexNumber $ teletexTerminalIdentifier $ tel
+ ephoneNumber $ internationaliSDNNumber $  facsimileTelephoneNumber $ street
+  $ postOfficeBox $ postalCode $ postalAddress $ physicalDeliveryOfficeName 
+ $ st $ l $ description ) )
+olcObjectClasses: {3}( 2.5.6.5 NAME 'organizationalUnit' DESC 'RFC2256: an o
+ rganizational unit' SUP top STRUCTURAL MUST ou MAY ( userPassword $ searchG
+ uide $ seeAlso $ businessCategory $ x121Address $ registeredAddress $ desti
+ nationIndicator $ preferredDeliveryMethod $ telexNumber $ teletexTerminalId
+ entifier $ telephoneNumber $ internationaliSDNNumber $ facsimileTelephoneNu
+ mber $ street $ postOfficeBox $ postalCode $ postalAddress $ physicalDelive
+ ryOfficeName $ st $ l $ description ) )
+olcObjectClasses: {4}( 2.5.6.6 NAME 'person' DESC 'RFC2256: a person' SUP to
+ p STRUCTURAL MUST ( sn $ cn ) MAY ( userPassword $ telephoneNumber $ seeAls
+ o $ description ) )
+olcObjectClasses: {5}( 2.5.6.7 NAME 'organizationalPerson' DESC 'RFC2256: an
+  organizational person' SUP person STRUCTURAL MAY ( title $ x121Address $ r
+ egisteredAddress $ destinationIndicator $ preferredDeliveryMethod $ telexNu
+ mber $ teletexTerminalIdentifier $ telephoneNumber $ internationaliSDNNumbe
+ r $  facsimileTelephoneNumber $ street $ postOfficeBox $ postalCode $ posta
+ lAddress $ physicalDeliveryOfficeName $ ou $ st $ l ) )
+olcObjectClasses: {6}( 2.5.6.8 NAME 'organizationalRole' DESC 'RFC2256: an o
+ rganizational role' SUP top STRUCTURAL MUST cn MAY ( x121Address $ register
+ edAddress $ destinationIndicator $ preferredDeliveryMethod $ telexNumber $ 
+ teletexTerminalIdentifier $ telephoneNumber $ internationaliSDNNumber $ fac
+ simileTelephoneNumber $ seeAlso $ roleOccupant $ preferredDeliveryMethod $ 
+ street $ postOfficeBox $ postalCode $ postalAddress $ physicalDeliveryOffic
+ eName $ ou $ st $ l $ description ) )
+olcObjectClasses: {7}( 2.5.6.9 NAME 'groupOfNames' DESC 'RFC2256: a group of
+  names (DNs)' SUP top STRUCTURAL MUST ( member $ cn ) MAY ( businessCategor
+ y $ seeAlso $ owner $ ou $ o $ description ) )
+olcObjectClasses: {8}( 2.5.6.10 NAME 'residentialPerson' DESC 'RFC2256: an r
+ esidential person' SUP person STRUCTURAL MUST l MAY ( businessCategory $ x1
+ 21Address $ registeredAddress $ destinationIndicator $ preferredDeliveryMet
+ hod $ telexNumber $ teletexTerminalIdentifier $ telephoneNumber $ internati
+ onaliSDNNumber $ facsimileTelephoneNumber $ preferredDeliveryMethod $ stree
+ t $ postOfficeBox $ postalCode $ postalAddress $ physicalDeliveryOfficeName
+  $ st $ l ) )
+olcObjectClasses: {9}( 2.5.6.11 NAME 'applicationProcess' DESC 'RFC2256: an 
+ application process' SUP top STRUCTURAL MUST cn MAY ( seeAlso $ ou $ l $ de
+ scription ) )
+olcObjectClasses: {10}( 2.5.6.12 NAME 'applicationEntity' DESC 'RFC2256: an 
+ application entity' SUP top STRUCTURAL MUST ( presentationAddress $ cn ) MA
+ Y ( supportedApplicationContext $ seeAlso $ ou $ o $ l $ description ) )
+olcObjectClasses: {11}( 2.5.6.13 NAME 'dSA' DESC 'RFC2256: a directory syste
+ m agent (a server)' SUP applicationEntity STRUCTURAL MAY knowledgeInformati
+ on )
+olcObjectClasses: {12}( 2.5.6.14 NAME 'device' DESC 'RFC2256: a device' SUP 
+ top STRUCTURAL MUST cn MAY ( serialNumber $ seeAlso $ owner $ ou $ o $ l $ 
+ description ) )
+olcObjectClasses: {13}( 2.5.6.15 NAME 'strongAuthenticationUser' DESC 'RFC22
+ 56: a strong authentication user' SUP top AUXILIARY MUST userCertificate )
+olcObjectClasses: {14}( 2.5.6.16 NAME 'certificationAuthority' DESC 'RFC2256
+ : a certificate authority' SUP top AUXILIARY MUST ( authorityRevocationList
+  $ certificateRevocationList $ cACertificate ) MAY crossCertificatePair )
+olcObjectClasses: {15}( 2.5.6.17 NAME 'groupOfUniqueNames' DESC 'RFC2256: a 
+ group of unique names (DN and Unique Identifier)' SUP top STRUCTURAL MUST (
+  uniqueMember $ cn ) MAY ( businessCategory $ seeAlso $ owner $ ou $ o $ de
+ scription ) )
+olcObjectClasses: {16}( 2.5.6.18 NAME 'userSecurityInformation' DESC 'RFC225
+ 6: a user security information' SUP top AUXILIARY MAY ( supportedAlgorithms
+  ) )
+olcObjectClasses: {17}( 2.5.6.16.2 NAME 'certificationAuthority-V2' SUP cert
+ ificationAuthority AUXILIARY MAY ( deltaRevocationList ) )
+olcObjectClasses: {18}( 2.5.6.19 NAME 'cRLDistributionPoint' SUP top STRUCTU
+ RAL MUST ( cn ) MAY ( certificateRevocationList $ authorityRevocationList $
+  deltaRevocationList ) )
+olcObjectClasses: {19}( 2.5.6.20 NAME 'dmd' SUP top STRUCTURAL MUST ( dmdNam
+ e ) MAY ( userPassword $ searchGuide $ seeAlso $ businessCategory $ x121Add
+ ress $ registeredAddress $ destinationIndicator $ preferredDeliveryMethod $
+  telexNumber $ teletexTerminalIdentifier $ telephoneNumber $ internationali
+ SDNNumber $ facsimileTelephoneNumber $ street $ postOfficeBox $ postalCode 
+ $ postalAddress $ physicalDeliveryOfficeName $ st $ l $ description ) )
+olcObjectClasses: {20}( 2.5.6.21 NAME 'pkiUser' DESC 'RFC2587: a PKI user' S
+ UP top AUXILIARY MAY userCertificate )
+olcObjectClasses: {21}( 2.5.6.22 NAME 'pkiCA' DESC 'RFC2587: PKI certificate
+  authority' SUP top AUXILIARY MAY ( authorityRevocationList $ certificateRe
+ vocationList $ cACertificate $ crossCertificatePair ) )
+olcObjectClasses: {22}( 2.5.6.23 NAME 'deltaCRL' DESC 'RFC2587: PKI user' SU
+ P top AUXILIARY MAY deltaRevocationList )
+olcObjectClasses: {23}( 1.3.6.1.4.1.250.3.15 NAME 'labeledURIObject' DESC 'R
+ FC2079: object that contains the URI attribute type' MAY ( labeledURI ) SUP
+  top AUXILIARY )
+olcObjectClasses: {24}( 0.9.2342.19200300.100.4.19 NAME 'simpleSecurityObjec
+ t' DESC 'RFC1274: simple security object' SUP top AUXILIARY MUST userPasswo
+ rd )
+olcObjectClasses: {25}( 1.3.6.1.4.1.1466.344 NAME 'dcObject' DESC 'RFC2247: 
+ domain component object' SUP top AUXILIARY MUST dc )
+olcObjectClasses: {26}( 1.3.6.1.1.3.1 NAME 'uidObject' DESC 'RFC2377: uid ob
+ ject' SUP top AUXILIARY MUST uid )
+structuralObjectClass: olcSchemaConfig
+entryUUID: eabe92a4-b3d4-1037-8b78-3569e2a942b6
+creatorsName: cn=admin,cn=config
+createTimestamp: 20180304085104Z
+entryCSN: 20180304085104.688260Z#000000#000#000000
+modifiersName: cn=admin,cn=config
+modifyTimestamp: 20180304085104Z
+
+dn: cn={1}cosine,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: {1}cosine
+olcAttributeTypes: {0}( 0.9.2342.19200300.100.1.2 NAME 'textEncodedORAddress
+ ' EQUALITY caseIgnoreMatch SUBSTR caseIgnoreSubstringsMatch SYNTAX 1.3.6.1.
+ 4.1.1466.115.121.1.15{256} )
+olcAttributeTypes: {1}( 0.9.2342.19200300.100.1.4 NAME 'info' DESC 'RFC1274:
+  general information' EQUALITY caseIgnoreMatch SUBSTR caseIgnoreSubstringsM
+ atch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{2048} )
+olcAttributeTypes: {2}( 0.9.2342.19200300.100.1.5 NAME ( 'drink' 'favouriteD
+ rink' ) DESC 'RFC1274: favorite drink' EQUALITY caseIgnoreMatch SUBSTR case
+ IgnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{256} )
+olcAttributeTypes: {3}( 0.9.2342.19200300.100.1.6 NAME 'roomNumber' DESC 'RF
+ C1274: room number' EQUALITY caseIgnoreMatch SUBSTR caseIgnoreSubstringsMat
+ ch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{256} )
+olcAttributeTypes: {4}( 0.9.2342.19200300.100.1.7 NAME 'photo' DESC 'RFC1274
+ : photo (G3 fax)' SYNTAX 1.3.6.1.4.1.1466.115.121.1.23{25000} )
+olcAttributeTypes: {5}( 0.9.2342.19200300.100.1.8 NAME 'userClass' DESC 'RFC
+ 1274: category of user' EQUALITY caseIgnoreMatch SUBSTR caseIgnoreSubstring
+ sMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{256} )
+olcAttributeTypes: {6}( 0.9.2342.19200300.100.1.9 NAME 'host' DESC 'RFC1274:
+  host computer' EQUALITY caseIgnoreMatch SUBSTR caseIgnoreSubstringsMatch S
+ YNTAX 1.3.6.1.4.1.1466.115.121.1.15{256} )
+olcAttributeTypes: {7}( 0.9.2342.19200300.100.1.10 NAME 'manager' DESC 'RFC1
+ 274: DN of manager' EQUALITY distinguishedNameMatch SYNTAX 1.3.6.1.4.1.1466
+ .115.121.1.12 )
+olcAttributeTypes: {8}( 0.9.2342.19200300.100.1.11 NAME 'documentIdentifier'
+  DESC 'RFC1274: unique identifier of document' EQUALITY caseIgnoreMatch SUB
+ STR caseIgnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{256} )
+olcAttributeTypes: {9}( 0.9.2342.19200300.100.1.12 NAME 'documentTitle' DESC
+  'RFC1274: title of document' EQUALITY caseIgnoreMatch SUBSTR caseIgnoreSub
+ stringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{256} )
+olcAttributeTypes: {10}( 0.9.2342.19200300.100.1.13 NAME 'documentVersion' D
+ ESC 'RFC1274: version of document' EQUALITY caseIgnoreMatch SUBSTR caseIgno
+ reSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{256} )
+olcAttributeTypes: {11}( 0.9.2342.19200300.100.1.14 NAME 'documentAuthor' DE
+ SC 'RFC1274: DN of author of document' EQUALITY distinguishedNameMatch SYNT
+ AX 1.3.6.1.4.1.1466.115.121.1.12 )
+olcAttributeTypes: {12}( 0.9.2342.19200300.100.1.15 NAME 'documentLocation' 
+ DESC 'RFC1274: location of document original' EQUALITY caseIgnoreMatch SUBS
+ TR caseIgnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{256} )
+olcAttributeTypes: {13}( 0.9.2342.19200300.100.1.20 NAME ( 'homePhone' 'home
+ TelephoneNumber' ) DESC 'RFC1274: home telephone number' EQUALITY telephone
+ NumberMatch SUBSTR telephoneNumberSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.1
+ 15.121.1.50 )
+olcAttributeTypes: {14}( 0.9.2342.19200300.100.1.21 NAME 'secretary' DESC 'R
+ FC1274: DN of secretary' EQUALITY distinguishedNameMatch SYNTAX 1.3.6.1.4.1
+ .1466.115.121.1.12 )
+olcAttributeTypes: {15}( 0.9.2342.19200300.100.1.22 NAME 'otherMailbox' SYNT
+ AX 1.3.6.1.4.1.1466.115.121.1.39 )
+olcAttributeTypes: {16}( 0.9.2342.19200300.100.1.26 NAME 'aRecord' EQUALITY 
+ caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 )
+olcAttributeTypes: {17}( 0.9.2342.19200300.100.1.27 NAME 'mDRecord' EQUALITY
+  caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 )
+olcAttributeTypes: {18}( 0.9.2342.19200300.100.1.28 NAME 'mXRecord' EQUALITY
+  caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 )
+olcAttributeTypes: {19}( 0.9.2342.19200300.100.1.29 NAME 'nSRecord' EQUALITY
+  caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 )
+olcAttributeTypes: {20}( 0.9.2342.19200300.100.1.30 NAME 'sOARecord' EQUALIT
+ Y caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 )
+olcAttributeTypes: {21}( 0.9.2342.19200300.100.1.31 NAME 'cNAMERecord' EQUAL
+ ITY caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 )
+olcAttributeTypes: {22}( 0.9.2342.19200300.100.1.38 NAME 'associatedName' DE
+ SC 'RFC1274: DN of entry associated with domain' EQUALITY distinguishedName
+ Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.12 )
+olcAttributeTypes: {23}( 0.9.2342.19200300.100.1.39 NAME 'homePostalAddress'
+  DESC 'RFC1274: home postal address' EQUALITY caseIgnoreListMatch SUBSTR ca
+ seIgnoreListSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.41 )
+olcAttributeTypes: {24}( 0.9.2342.19200300.100.1.40 NAME 'personalTitle' DES
+ C 'RFC1274: personal title' EQUALITY caseIgnoreMatch SUBSTR caseIgnoreSubst
+ ringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{256} )
+olcAttributeTypes: {25}( 0.9.2342.19200300.100.1.41 NAME ( 'mobile' 'mobileT
+ elephoneNumber' ) DESC 'RFC1274: mobile telephone number' EQUALITY telephon
+ eNumberMatch SUBSTR telephoneNumberSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.
+ 115.121.1.50 )
+olcAttributeTypes: {26}( 0.9.2342.19200300.100.1.42 NAME ( 'pager' 'pagerTel
+ ephoneNumber' ) DESC 'RFC1274: pager telephone number' EQUALITY telephoneNu
+ mberMatch SUBSTR telephoneNumberSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115
+ .121.1.50 )
+olcAttributeTypes: {27}( 0.9.2342.19200300.100.1.43 NAME ( 'co' 'friendlyCou
+ ntryName' ) DESC 'RFC1274: friendly country name' EQUALITY caseIgnoreMatch 
+ SUBSTR caseIgnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {28}( 0.9.2342.19200300.100.1.44 NAME 'uniqueIdentifier' 
+ DESC 'RFC1274: unique identifer' EQUALITY caseIgnoreMatch SYNTAX 1.3.6.1.4.
+ 1.1466.115.121.1.15{256} )
+olcAttributeTypes: {29}( 0.9.2342.19200300.100.1.45 NAME 'organizationalStat
+ us' DESC 'RFC1274: organizational status' EQUALITY caseIgnoreMatch SUBSTR c
+ aseIgnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{256} )
+olcAttributeTypes: {30}( 0.9.2342.19200300.100.1.46 NAME 'janetMailbox' DESC
+  'RFC1274: Janet mailbox' EQUALITY caseIgnoreIA5Match SUBSTR caseIgnoreIA5S
+ ubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.26{256} )
+olcAttributeTypes: {31}( 0.9.2342.19200300.100.1.47 NAME 'mailPreferenceOpti
+ on' DESC 'RFC1274: mail preference option' SYNTAX 1.3.6.1.4.1.1466.115.121.
+ 1.27 )
+olcAttributeTypes: {32}( 0.9.2342.19200300.100.1.48 NAME 'buildingName' DESC
+  'RFC1274: name of building' EQUALITY caseIgnoreMatch SUBSTR caseIgnoreSubs
+ tringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{256} )
+olcAttributeTypes: {33}( 0.9.2342.19200300.100.1.49 NAME 'dSAQuality' DESC '
+ RFC1274: DSA Quality' SYNTAX 1.3.6.1.4.1.1466.115.121.1.19 SINGLE-VALUE )
+olcAttributeTypes: {34}( 0.9.2342.19200300.100.1.50 NAME 'singleLevelQuality
+ ' DESC 'RFC1274: Single Level Quality' SYNTAX 1.3.6.1.4.1.1466.115.121.1.13
+  SINGLE-VALUE )
+olcAttributeTypes: {35}( 0.9.2342.19200300.100.1.51 NAME 'subtreeMinimumQual
+ ity' DESC 'RFC1274: Subtree Mininum Quality' SYNTAX 1.3.6.1.4.1.1466.115.12
+ 1.1.13 SINGLE-VALUE )
+olcAttributeTypes: {36}( 0.9.2342.19200300.100.1.52 NAME 'subtreeMaximumQual
+ ity' DESC 'RFC1274: Subtree Maximun Quality' SYNTAX 1.3.6.1.4.1.1466.115.12
+ 1.1.13 SINGLE-VALUE )
+olcAttributeTypes: {37}( 0.9.2342.19200300.100.1.53 NAME 'personalSignature'
+  DESC 'RFC1274: Personal Signature (G3 fax)' SYNTAX 1.3.6.1.4.1.1466.115.12
+ 1.1.23 )
+olcAttributeTypes: {38}( 0.9.2342.19200300.100.1.54 NAME 'dITRedirect' DESC 
+ 'RFC1274: DIT Redirect' EQUALITY distinguishedNameMatch SYNTAX 1.3.6.1.4.1.
+ 1466.115.121.1.12 )
+olcAttributeTypes: {39}( 0.9.2342.19200300.100.1.55 NAME 'audio' DESC 'RFC12
+ 74: audio (u-law)' SYNTAX 1.3.6.1.4.1.1466.115.121.1.4{25000} )
+olcAttributeTypes: {40}( 0.9.2342.19200300.100.1.56 NAME 'documentPublisher'
+  DESC 'RFC1274: publisher of document' EQUALITY caseIgnoreMatch SUBSTR case
+ IgnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcObjectClasses: {0}( 0.9.2342.19200300.100.4.4 NAME ( 'pilotPerson' 'newPi
+ lotPerson' ) SUP person STRUCTURAL MAY ( userid $ textEncodedORAddress $ rf
+ c822Mailbox $ favouriteDrink $ roomNumber $ userClass $ homeTelephoneNumber
+  $ homePostalAddress $ secretary $ personalTitle $ preferredDeliveryMethod 
+ $ businessCategory $ janetMailbox $ otherMailbox $ mobileTelephoneNumber $ 
+ pagerTelephoneNumber $ organizationalStatus $ mailPreferenceOption $ person
+ alSignature ) )
+olcObjectClasses: {1}( 0.9.2342.19200300.100.4.5 NAME 'account' SUP top STRU
+ CTURAL MUST userid MAY ( description $ seeAlso $ localityName $ organizatio
+ nName $ organizationalUnitName $ host ) )
+olcObjectClasses: {2}( 0.9.2342.19200300.100.4.6 NAME 'document' SUP top STR
+ UCTURAL MUST documentIdentifier MAY ( commonName $ description $ seeAlso $ 
+ localityName $ organizationName $ organizationalUnitName $ documentTitle $ 
+ documentVersion $ documentAuthor $ documentLocation $ documentPublisher ) )
+olcObjectClasses: {3}( 0.9.2342.19200300.100.4.7 NAME 'room' SUP top STRUCTU
+ RAL MUST commonName MAY ( roomNumber $ description $ seeAlso $ telephoneNum
+ ber ) )
+olcObjectClasses: {4}( 0.9.2342.19200300.100.4.9 NAME 'documentSeries' SUP t
+ op STRUCTURAL MUST commonName MAY ( description $ seeAlso $ telephonenumber
+  $ localityName $ organizationName $ organizationalUnitName ) )
+olcObjectClasses: {5}( 0.9.2342.19200300.100.4.13 NAME 'domain' SUP top STRU
+ CTURAL MUST domainComponent MAY ( associatedName $ organizationName $ descr
+ iption $ businessCategory $ seeAlso $ searchGuide $ userPassword $ locality
+ Name $ stateOrProvinceName $ streetAddress $ physicalDeliveryOfficeName $ p
+ ostalAddress $ postalCode $ postOfficeBox $ streetAddress $ facsimileTeleph
+ oneNumber $ internationalISDNNumber $ telephoneNumber $ teletexTerminalIden
+ tifier $ telexNumber $ preferredDeliveryMethod $ destinationIndicator $ reg
+ isteredAddress $ x121Address ) )
+olcObjectClasses: {6}( 0.9.2342.19200300.100.4.14 NAME 'RFC822localPart' SUP
+  domain STRUCTURAL MAY ( commonName $ surname $ description $ seeAlso $ tel
+ ephoneNumber $ physicalDeliveryOfficeName $ postalAddress $ postalCode $ po
+ stOfficeBox $ streetAddress $ facsimileTelephoneNumber $ internationalISDNN
+ umber $ telephoneNumber $ teletexTerminalIdentifier $ telexNumber $ preferr
+ edDeliveryMethod $ destinationIndicator $ registeredAddress $ x121Address )
+  )
+olcObjectClasses: {7}( 0.9.2342.19200300.100.4.15 NAME 'dNSDomain' SUP domai
+ n STRUCTURAL MAY ( ARecord $ MDRecord $ MXRecord $ NSRecord $ SOARecord $ C
+ NAMERecord ) )
+olcObjectClasses: {8}( 0.9.2342.19200300.100.4.17 NAME 'domainRelatedObject'
+  DESC 'RFC1274: an object related to an domain' SUP top AUXILIARY MUST asso
+ ciatedDomain )
+olcObjectClasses: {9}( 0.9.2342.19200300.100.4.18 NAME 'friendlyCountry' SUP
+  country STRUCTURAL MUST friendlyCountryName )
+olcObjectClasses: {10}( 0.9.2342.19200300.100.4.20 NAME 'pilotOrganization' 
+ SUP ( organization $ organizationalUnit ) STRUCTURAL MAY buildingName )
+olcObjectClasses: {11}( 0.9.2342.19200300.100.4.21 NAME 'pilotDSA' SUP dsa S
+ TRUCTURAL MAY dSAQuality )
+olcObjectClasses: {12}( 0.9.2342.19200300.100.4.22 NAME 'qualityLabelledData
+ ' SUP top AUXILIARY MUST dsaQuality MAY ( subtreeMinimumQuality $ subtreeMa
+ ximumQuality ) )
+structuralObjectClass: olcSchemaConfig
+entryUUID: eabed1b0-b3d4-1037-8b79-3569e2a942b6
+creatorsName: cn=admin,cn=config
+createTimestamp: 20180304085104Z
+entryCSN: 20180304085104.689875Z#000000#000#000000
+modifiersName: cn=admin,cn=config
+modifyTimestamp: 20180304085104Z
+
+dn: cn={2}nis,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: {2}nis
+olcAttributeTypes: {0}( 1.3.6.1.1.1.1.2 NAME 'gecos' DESC 'The GECOS field; 
+ the common name' EQUALITY caseIgnoreIA5Match SUBSTR caseIgnoreIA5Substrings
+ Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
+olcAttributeTypes: {1}( 1.3.6.1.1.1.1.3 NAME 'homeDirectory' DESC 'The absol
+ ute path to the home directory' EQUALITY caseExactIA5Match SYNTAX 1.3.6.1.4
+ .1.1466.115.121.1.26 SINGLE-VALUE )
+olcAttributeTypes: {2}( 1.3.6.1.1.1.1.4 NAME 'loginShell' DESC 'The path to 
+ the login shell' EQUALITY caseExactIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121
+ .1.26 SINGLE-VALUE )
+olcAttributeTypes: {3}( 1.3.6.1.1.1.1.5 NAME 'shadowLastChange' EQUALITY int
+ egerMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 SINGLE-VALUE )
+olcAttributeTypes: {4}( 1.3.6.1.1.1.1.6 NAME 'shadowMin' EQUALITY integerMat
+ ch SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 SINGLE-VALUE )
+olcAttributeTypes: {5}( 1.3.6.1.1.1.1.7 NAME 'shadowMax' EQUALITY integerMat
+ ch SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 SINGLE-VALUE )
+olcAttributeTypes: {6}( 1.3.6.1.1.1.1.8 NAME 'shadowWarning' EQUALITY intege
+ rMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 SINGLE-VALUE )
+olcAttributeTypes: {7}( 1.3.6.1.1.1.1.9 NAME 'shadowInactive' EQUALITY integ
+ erMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 SINGLE-VALUE )
+olcAttributeTypes: {8}( 1.3.6.1.1.1.1.10 NAME 'shadowExpire' EQUALITY intege
+ rMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 SINGLE-VALUE )
+olcAttributeTypes: {9}( 1.3.6.1.1.1.1.11 NAME 'shadowFlag' EQUALITY integerM
+ atch SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 SINGLE-VALUE )
+olcAttributeTypes: {10}( 1.3.6.1.1.1.1.12 NAME 'memberUid' EQUALITY caseExac
+ tIA5Match SUBSTR caseExactIA5SubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.12
+ 1.1.26 )
+olcAttributeTypes: {11}( 1.3.6.1.1.1.1.13 NAME 'memberNisNetgroup' EQUALITY 
+ caseExactIA5Match SUBSTR caseExactIA5SubstringsMatch SYNTAX 1.3.6.1.4.1.146
+ 6.115.121.1.26 )
+olcAttributeTypes: {12}( 1.3.6.1.1.1.1.14 NAME 'nisNetgroupTriple' DESC 'Net
+ group triple' SYNTAX 1.3.6.1.1.1.0.0 )
+olcAttributeTypes: {13}( 1.3.6.1.1.1.1.15 NAME 'ipServicePort' EQUALITY inte
+ gerMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 SINGLE-VALUE )
+olcAttributeTypes: {14}( 1.3.6.1.1.1.1.16 NAME 'ipServiceProtocol' SUP name 
+ )
+olcAttributeTypes: {15}( 1.3.6.1.1.1.1.17 NAME 'ipProtocolNumber' EQUALITY i
+ ntegerMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 SINGLE-VALUE )
+olcAttributeTypes: {16}( 1.3.6.1.1.1.1.18 NAME 'oncRpcNumber' EQUALITY integ
+ erMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 SINGLE-VALUE )
+olcAttributeTypes: {17}( 1.3.6.1.1.1.1.19 NAME 'ipHostNumber' DESC 'IP addre
+ ss' EQUALITY caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26{128} )
+olcAttributeTypes: {18}( 1.3.6.1.1.1.1.20 NAME 'ipNetworkNumber' DESC 'IP ne
+ twork' EQUALITY caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26{128
+ } SINGLE-VALUE )
+olcAttributeTypes: {19}( 1.3.6.1.1.1.1.21 NAME 'ipNetmaskNumber' DESC 'IP ne
+ tmask' EQUALITY caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26{128
+ } SINGLE-VALUE )
+olcAttributeTypes: {20}( 1.3.6.1.1.1.1.22 NAME 'macAddress' DESC 'MAC addres
+ s' EQUALITY caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26{128} )
+olcAttributeTypes: {21}( 1.3.6.1.1.1.1.23 NAME 'bootParameter' DESC 'rpc.boo
+ tparamd parameter' SYNTAX 1.3.6.1.1.1.0.1 )
+olcAttributeTypes: {22}( 1.3.6.1.1.1.1.24 NAME 'bootFile' DESC 'Boot image n
+ ame' EQUALITY caseExactIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 )
+olcAttributeTypes: {23}( 1.3.6.1.1.1.1.26 NAME 'nisMapName' SUP name )
+olcAttributeTypes: {24}( 1.3.6.1.1.1.1.27 NAME 'nisMapEntry' EQUALITY caseEx
+ actIA5Match SUBSTR caseExactIA5SubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.
+ 121.1.26{1024} SINGLE-VALUE )
+olcObjectClasses: {0}( 1.3.6.1.1.1.2.0 NAME 'posixAccount' DESC 'Abstraction
+  of an account with POSIX attributes' SUP top AUXILIARY MUST ( cn $ uid $ u
+ idNumber $ gidNumber $ homeDirectory ) MAY ( userPassword $ loginShell $ ge
+ cos $ description ) )
+olcObjectClasses: {1}( 1.3.6.1.1.1.2.1 NAME 'shadowAccount' DESC 'Additional
+  attributes for shadow passwords' SUP top AUXILIARY MUST uid MAY ( userPass
+ word $ shadowLastChange $ shadowMin $ shadowMax $ shadowWarning $ shadowIna
+ ctive $ shadowExpire $ shadowFlag $ description ) )
+olcObjectClasses: {2}( 1.3.6.1.1.1.2.2 NAME 'posixGroup' DESC 'Abstraction o
+ f a group of accounts' SUP top STRUCTURAL MUST ( cn $ gidNumber ) MAY ( use
+ rPassword $ memberUid $ description ) )
+olcObjectClasses: {3}( 1.3.6.1.1.1.2.3 NAME 'ipService' DESC 'Abstraction an
+  Internet Protocol service' SUP top STRUCTURAL MUST ( cn $ ipServicePort $ 
+ ipServiceProtocol ) MAY description )
+olcObjectClasses: {4}( 1.3.6.1.1.1.2.4 NAME 'ipProtocol' DESC 'Abstraction o
+ f an IP protocol' SUP top STRUCTURAL MUST ( cn $ ipProtocolNumber $ descrip
+ tion ) MAY description )
+olcObjectClasses: {5}( 1.3.6.1.1.1.2.5 NAME 'oncRpc' DESC 'Abstraction of an
+  ONC/RPC binding' SUP top STRUCTURAL MUST ( cn $ oncRpcNumber $ description
+  ) MAY description )
+olcObjectClasses: {6}( 1.3.6.1.1.1.2.6 NAME 'ipHost' DESC 'Abstraction of a 
+ host, an IP device' SUP top AUXILIARY MUST ( cn $ ipHostNumber ) MAY ( l $ 
+ description $ manager ) )
+olcObjectClasses: {7}( 1.3.6.1.1.1.2.7 NAME 'ipNetwork' DESC 'Abstraction of
+  an IP network' SUP top STRUCTURAL MUST ( cn $ ipNetworkNumber ) MAY ( ipNe
+ tmaskNumber $ l $ description $ manager ) )
+olcObjectClasses: {8}( 1.3.6.1.1.1.2.8 NAME 'nisNetgroup' DESC 'Abstraction 
+ of a netgroup' SUP top STRUCTURAL MUST cn MAY ( nisNetgroupTriple $ memberN
+ isNetgroup $ description ) )
+olcObjectClasses: {9}( 1.3.6.1.1.1.2.9 NAME 'nisMap' DESC 'A generic abstrac
+ tion of a NIS map' SUP top STRUCTURAL MUST nisMapName MAY description )
+olcObjectClasses: {10}( 1.3.6.1.1.1.2.10 NAME 'nisObject' DESC 'An entry in 
+ a NIS map' SUP top STRUCTURAL MUST ( cn $ nisMapEntry $ nisMapName ) MAY de
+ scription )
+olcObjectClasses: {11}( 1.3.6.1.1.1.2.11 NAME 'ieee802Device' DESC 'A device
+  with a MAC address' SUP top AUXILIARY MAY macAddress )
+olcObjectClasses: {12}( 1.3.6.1.1.1.2.12 NAME 'bootableDevice' DESC 'A devic
+ e with boot parameters' SUP top AUXILIARY MAY ( bootFile $ bootParameter ) 
+ )
+structuralObjectClass: olcSchemaConfig
+entryUUID: eabefc6c-b3d4-1037-8b7a-3569e2a942b6
+creatorsName: cn=admin,cn=config
+createTimestamp: 20180304085104Z
+entryCSN: 20180304085104.690968Z#000000#000#000000
+modifiersName: cn=admin,cn=config
+modifyTimestamp: 20180304085104Z
+
+dn: cn={3}inetorgperson,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: {3}inetorgperson
+olcAttributeTypes: {0}( 2.16.840.1.113730.3.1.1 NAME 'carLicense' DESC 'RFC2
+ 798: vehicle license or registration plate' EQUALITY caseIgnoreMatch SUBSTR
+  caseIgnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {1}( 2.16.840.1.113730.3.1.2 NAME 'departmentNumber' DESC
+  'RFC2798: identifies a department within an organization' EQUALITY caseIgn
+ oreMatch SUBSTR caseIgnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1
+ .15 )
+olcAttributeTypes: {2}( 2.16.840.1.113730.3.1.241 NAME 'displayName' DESC 'R
+ FC2798: preferred name to be used when displaying entries' EQUALITY caseIgn
+ oreMatch SUBSTR caseIgnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1
+ .15 SINGLE-VALUE )
+olcAttributeTypes: {3}( 2.16.840.1.113730.3.1.3 NAME 'employeeNumber' DESC '
+ RFC2798: numerically identifies an employee within an organization' EQUALIT
+ Y caseIgnoreMatch SUBSTR caseIgnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.
+ 115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {4}( 2.16.840.1.113730.3.1.4 NAME 'employeeType' DESC 'RF
+ C2798: type of employment for a person' EQUALITY caseIgnoreMatch SUBSTR cas
+ eIgnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: {5}( 0.9.2342.19200300.100.1.60 NAME 'jpegPhoto' DESC 'RF
+ C2798: a JPEG image' SYNTAX 1.3.6.1.4.1.1466.115.121.1.28 )
+olcAttributeTypes: {6}( 2.16.840.1.113730.3.1.39 NAME 'preferredLanguage' DE
+ SC 'RFC2798: preferred written or spoken language for a person' EQUALITY ca
+ seIgnoreMatch SUBSTR caseIgnoreSubstringsMatch SYNTAX 1.3.6.1.4.1.1466.115.
+ 121.1.15 SINGLE-VALUE )
+olcAttributeTypes: {7}( 2.16.840.1.113730.3.1.40 NAME 'userSMIMECertificate'
+  DESC 'RFC2798: PKCS#7 SignedData used to support S/MIME' SYNTAX 1.3.6.1.4.
+ 1.1466.115.121.1.5 )
+olcAttributeTypes: {8}( 2.16.840.1.113730.3.1.216 NAME 'userPKCS12' DESC 'RF
+ C2798: personal identity information, a PKCS #12 PFX' SYNTAX 1.3.6.1.4.1.14
+ 66.115.121.1.5 )
+olcObjectClasses: {0}( 2.16.840.1.113730.3.2.2 NAME 'inetOrgPerson' DESC 'RF
+ C2798: Internet Organizational Person' SUP organizationalPerson STRUCTURAL 
+ MAY ( audio $ businessCategory $ carLicense $ departmentNumber $ displayNam
+ e $ employeeNumber $ employeeType $ givenName $ homePhone $ homePostalAddre
+ ss $ initials $ jpegPhoto $ labeledURI $ mail $ manager $ mobile $ o $ page
+ r $ photo $ roomNumber $ secretary $ uid $ userCertificate $ x500uniqueIden
+ tifier $ preferredLanguage $ userSMIMECertificate $ userPKCS12 ) )
+structuralObjectClass: olcSchemaConfig
+entryUUID: eabf172e-b3d4-1037-8b7b-3569e2a942b6
+creatorsName: cn=admin,cn=config
+createTimestamp: 20180304085104Z
+entryCSN: 20180304085104.691654Z#000000#000#000000
+modifiersName: cn=admin,cn=config
+modifyTimestamp: 20180304085104Z
+
+dn: cn={4}dhcp,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: {4}dhcp
+olcAttributeTypes: {0}( 2.16.840.1.113719.1.203.4.1 NAME 'dhcpPrimaryDN' DES
+ C 'The DN of the dhcpServer which is the primary server for the configurati
+ on.' EQUALITY distinguishedNameMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.12 S
+ INGLE-VALUE )
+olcAttributeTypes: {1}( 2.16.840.1.113719.1.203.4.2 NAME 'dhcpSecondaryDN' D
+ ESC 'The DN of dhcpServer(s) which provide backup service for the configura
+ tion.' EQUALITY distinguishedNameMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.12
+  )
+olcAttributeTypes: {2}( 2.16.840.1.113719.1.203.4.3 NAME 'dhcpStatements' DE
+ SC 'Flexible storage for specific data depending on what object this exists
+  in. Like conditional statements, server parameters, etc. This allows the s
+ tandard to evolve without needing to adjust the schema.' EQUALITY caseIgnor
+ eIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 )
+olcAttributeTypes: {3}( 2.16.840.1.113719.1.203.4.4 NAME 'dhcpRange' DESC 'T
+ he starting & ending IP Addresses in the range (inclusive), separated by a 
+ hyphen; if the range only contains one address, then just the address can b
+ e specified with no hyphen.  Each range is defined as a separate value.' EQ
+ UALITY caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 )
+olcAttributeTypes: {4}( 2.16.840.1.113719.1.203.4.5 NAME 'dhcpPermitList' DE
+ SC 'This attribute contains the permit lists associated with a pool. Each p
+ ermit list is defined as a separate value.' EQUALITY caseIgnoreIA5Match SYN
+ TAX 1.3.6.1.4.1.1466.115.121.1.26 )
+olcAttributeTypes: {5}( 2.16.840.1.113719.1.203.4.6 NAME 'dhcpNetMask' DESC 
+ 'The subnet mask length for the subnet.  The mask can be easily computed fr
+ om this length.' EQUALITY integerMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.27
+  SINGLE-VALUE )
+olcAttributeTypes: {6}( 2.16.840.1.113719.1.203.4.7 NAME 'dhcpOption' DESC '
+ Encoded option values to be sent to clients.  Each value represents a singl
+ e option and contains (OptionTag, Length, OptionValue) encoded in the forma
+ t used by DHCP.' EQUALITY caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466.115.12
+ 1.1.26 )
+olcAttributeTypes: {7}( 2.16.840.1.113719.1.203.4.8 NAME 'dhcpClassData' DES
+ C 'Encoded text string or list of bytes expressed in hexadecimal, separated
+  by colons.  Clients match subclasses based on matching the class data with
+  the results of match or spawn with statements in the class name declaratio
+ ns.' EQUALITY caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGL
+ E-VALUE )
+olcAttributeTypes: {8}( 2.16.840.1.113719.1.203.4.9 NAME 'dhcpOptionsDN' DES
+ C 'The distinguished name(s) of the dhcpOption objects containing the confi
+ guration options provided by the server.' EQUALITY distinguishedNameMatch S
+ YNTAX 1.3.6.1.4.1.1466.115.121.1.12 )
+olcAttributeTypes: {9}( 2.16.840.1.113719.1.203.4.10 NAME 'dhcpHostDN' DESC 
+ 'the distinguished name(s) of the dhcpHost objects.' EQUALITY distinguished
+ NameMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.12 )
+olcAttributeTypes: {10}( 2.16.840.1.113719.1.203.4.11 NAME 'dhcpPoolDN' DESC
+  'The distinguished name(s) of pools.' EQUALITY distinguishedNameMatch SYNT
+ AX 1.3.6.1.4.1.1466.115.121.1.12 )
+olcAttributeTypes: {11}( 2.16.840.1.113719.1.203.4.12 NAME 'dhcpGroupDN' DES
+ C 'The distinguished name(s)   of the groups.' EQUALITY distinguishedNameMa
+ tch SYNTAX 1.3.6.1.4.1.1466.115.121.1.12 )
+olcAttributeTypes: {12}( 2.16.840.1.113719.1.203.4.13 NAME 'dhcpSubnetDN' DE
+ SC 'The distinguished name(s) of the subnets.' EQUALITY distinguishedNameMa
+ tch SYNTAX 1.3.6.1.4.1.1466.115.121.1.12 )
+olcAttributeTypes: {13}( 2.16.840.1.113719.1.203.4.14 NAME 'dhcpLeaseDN' DES
+ C 'The distinguished name of a client address.' EQUALITY distinguishedNameM
+ atch SYNTAX 1.3.6.1.4.1.1466.115.121.1.12 SINGLE-VALUE )
+olcAttributeTypes: {14}( 2.16.840.1.113719.1.203.4.15 NAME 'dhcpLeasesDN' DE
+ SC 'The distinguished name(s) client addresses.' EQUALITY distinguishedName
+ Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.12 )
+olcAttributeTypes: {15}( 2.16.840.1.113719.1.203.4.16 NAME 'dhcpClassesDN' D
+ ESC 'The distinguished name(s) of a class(es) in a subclass.' EQUALITY dist
+ inguishedNameMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.12 )
+olcAttributeTypes: {16}( 2.16.840.1.113719.1.203.4.17 NAME 'dhcpSubclassesDN
+ ' DESC 'The distinguished name(s) of subclass(es).' EQUALITY distinguishedN
+ ameMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.12 )
+olcAttributeTypes: {17}( 2.16.840.1.113719.1.203.4.18 NAME 'dhcpSharedNetwor
+ kDN' DESC 'The distinguished name(s) of sharedNetworks.' EQUALITY distingui
+ shedNameMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.12 )
+olcAttributeTypes: {18}( 2.16.840.1.113719.1.203.4.19 NAME 'dhcpServiceDN' D
+ ESC 'The DN of dhcpService object(s)which contain the configuration informa
+ tion. Each dhcpServer object has this attribute identifying the DHCP config
+ uration(s) that the server is associated with.' EQUALITY distinguishedNameM
+ atch SYNTAX 1.3.6.1.4.1.1466.115.121.1.12 )
+olcAttributeTypes: {19}( 2.16.840.1.113719.1.203.4.20 NAME 'dhcpVersion' DES
+ C 'The version attribute of this object.' EQUALITY caseIgnoreIA5Match SYNTA
+ X 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
+olcAttributeTypes: {20}( 2.16.840.1.113719.1.203.4.21 NAME 'dhcpImplementati
+ on' DESC 'Description of the DHCP Server implementation e.g. DHCP Servers v
+ endor.' EQUALITY caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SI
+ NGLE-VALUE )
+olcAttributeTypes: {21}( 2.16.840.1.113719.1.203.4.22 NAME 'dhcpAddressState
+ ' DESC 'This stores information about the current binding-status of an addr
+ ess.  For dynamic addresses managed by DHCP, the values should be restricte
+ d to the following: "FREE", "ACTIVE", "EXPIRED", "RELEASED", "RESET", "ABAN
+ DONED", "BACKUP".  For other addresses, it SHOULD be one of the following: 
+ "UNKNOWN", "RESERVED" (an address that is managed by DHCP that is reserved 
+ for a specific client), "RESERVED-ACTIVE" (same as reserved, but address is
+  currently in use), "ASSIGNED" (assigned manually or by some other mechanis
+ m), "UNASSIGNED", "NOTASSIGNABLE".' EQUALITY caseIgnoreIA5Match SYNTAX 1.3.
+ 6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
+olcAttributeTypes: {22}( 2.16.840.1.113719.1.203.4.23 NAME 'dhcpExpirationTi
+ me' DESC 'This is the time the current lease for an address expires.' EQUAL
+ ITY generalizedTimeMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.24 SINGLE-VALUE 
+ )
+olcAttributeTypes: {23}( 2.16.840.1.113719.1.203.4.24 NAME 'dhcpStartTimeOfS
+ tate' DESC 'This is the time of the last state change for a leased address.
+ ' EQUALITY generalizedTimeMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.24 SINGLE
+ -VALUE )
+olcAttributeTypes: {24}( 2.16.840.1.113719.1.203.4.25 NAME 'dhcpLastTransact
+ ionTime' DESC 'This is the last time a valid DHCP packet was received from 
+ the client.' EQUALITY generalizedTimeMatch SYNTAX 1.3.6.1.4.1.1466.115.121.
+ 1.24 SINGLE-VALUE )
+olcAttributeTypes: {25}( 2.16.840.1.113719.1.203.4.26 NAME 'dhcpBootpFlag' D
+ ESC 'This indicates whether the address was assigned via BOOTP.' EQUALITY b
+ ooleanMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.7 SINGLE-VALUE )
+olcAttributeTypes: {26}( 2.16.840.1.113719.1.203.4.27 NAME 'dhcpDomainName' 
+ DESC 'This is the name of the domain sent to the client by the server.  It 
+ is essentially the same as the value for DHCP option 15 sent to the client,
+  and represents only the domain - not the full FQDN.  To obtain the full FQ
+ DN assigned to the client you must prepend the "dhcpAssignedHostName" to th
+ is value with a ".".' EQUALITY caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466.1
+ 15.121.1.26 SINGLE-VALUE )
+olcAttributeTypes: {27}( 2.16.840.1.113719.1.203.4.28 NAME 'dhcpDnsStatus' D
+ ESC 'This indicates the status of updating DNS resource records on behalf o
+ f the client by the DHCP server for this address.  The value is a 16-bit bi
+ tmask.' EQUALITY integerMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 SINGLE-V
+ ALUE )
+olcAttributeTypes: {28}( 2.16.840.1.113719.1.203.4.29 NAME 'dhcpRequestedHos
+ tName' DESC 'This is the hostname that was requested by the client.' EQUALI
+ TY caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
+olcAttributeTypes: {29}( 2.16.840.1.113719.1.203.4.30 NAME 'dhcpAssignedHost
+ Name' DESC 'This is the actual hostname that was assigned to a client. It m
+ ay not be the name that was requested by the client.  The fully qualified d
+ omain name can be determined by appending the value of "dhcpDomainName" (wi
+ th a dot separator) to this name.' EQUALITY caseIgnoreIA5Match SYNTAX 1.3.6
+ .1.4.1.1466.115.121.1.26 SINGLE-VALUE )
+olcAttributeTypes: {30}( 2.16.840.1.113719.1.203.4.31 NAME 'dhcpReservedForC
+ lient' DESC 'The distinguished name of a "dhcpClient" that an address is re
+ served for.  This may not be the same as the "dhcpAssignedToClient" attribu
+ te if the address is being reassigned but the current lease has not yet exp
+ ired.' EQUALITY distinguishedNameMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.12
+  SINGLE-VALUE )
+olcAttributeTypes: {31}( 2.16.840.1.113719.1.203.4.32 NAME 'dhcpAssignedToCl
+ ient' DESC 'This is the distinguished name of a "dhcpClient" that an addres
+ s is currently assigned to.  This attribute is only present in the class wh
+ en the address is leased.' EQUALITY distinguishedNameMatch SYNTAX 1.3.6.1.4
+ .1.1466.115.121.1.12 SINGLE-VALUE )
+olcAttributeTypes: {32}( 2.16.840.1.113719.1.203.4.33 NAME 'dhcpRelayAgentIn
+ fo' DESC 'If the client request was received via a relay agent, this contai
+ ns information about the relay agent that was available from the DHCP reque
+ st.  This is a hex-encoded option value.' EQUALITY octetStringMatch SYNTAX 
+ 1.3.6.1.4.1.1466.115.121.1.40 SINGLE-VALUE )
+olcAttributeTypes: {33}( 2.16.840.1.113719.1.203.4.34 NAME 'dhcpHWAddress' D
+ ESC 'The clients hardware address that requested this IP address.' EQUALITY
+  caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
+olcAttributeTypes: {34}( 2.16.840.1.113719.1.203.4.35 NAME 'dhcpHashBucketAs
+ signment' DESC 'HashBucketAssignment bit map for the DHCP Server, as define
+ d in DHC Load Balancing Algorithm [RFC 3074].' EQUALITY octetStringMatch SY
+ NTAX 1.3.6.1.4.1.1466.115.121.1.40 SINGLE-VALUE )
+olcAttributeTypes: {35}( 2.16.840.1.113719.1.203.4.36 NAME 'dhcpDelayedServi
+ ceParameter' DESC 'Delay in seconds corresponding to Delayed Service Parame
+ ter configuration, as defined in  DHC Load Balancing Algorithm [RFC 3074]. 
+ ' EQUALITY integerMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 SINGLE-VALUE )
+olcAttributeTypes: {36}( 2.16.840.1.113719.1.203.4.37 NAME 'dhcpMaxClientLea
+ dTime' DESC 'Maximum Client Lead Time configuration in seconds, as defined 
+ in DHCP Failover Protocol [FAILOVR]' EQUALITY integerMatch SYNTAX 1.3.6.1.4
+ .1.1466.115.121.1.27 SINGLE-VALUE )
+olcAttributeTypes: {37}( 2.16.840.1.113719.1.203.4.38 NAME 'dhcpFailOverEndp
+ ointState' DESC 'Server (Failover Endpoint) state, as defined in DHCP Failo
+ ver Protocol [FAILOVR]' EQUALITY caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466
+ .115.121.1.26 SINGLE-VALUE )
+olcAttributeTypes: {38}( 2.16.840.1.113719.1.203.4.39 NAME 'dhcpErrorLog' DE
+ SC 'Generic error log attribute that allows logging error conditions within
+  a dhcpService or a dhcpSubnet, like no IP addresses available for lease.' 
+ EQUALITY caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VAL
+ UE )
+olcAttributeTypes: {39}( 2.16.840.1.113719.1.203.4.40 NAME 'dhcpLocatorDN' D
+ ESC 'The DN of dhcpLocator object which contain the DNs of all DHCP configu
+ ration objects. There will be a single dhcpLocator object in the tree with 
+ links to all the DHCP objects in the tree' EQUALITY distinguishedNameMatch 
+ SYNTAX 1.3.6.1.4.1.1466.115.121.1.12 )
+olcAttributeTypes: {40}( 2.16.840.1.113719.1.203.4.41 NAME 'dhcpKeyAlgorithm
+ ' DESC 'Algorithm to generate TSIG Key' EQUALITY caseIgnoreIA5Match SYNTAX 
+ 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
+olcAttributeTypes: {41}( 2.16.840.1.113719.1.203.4.42 NAME 'dhcpKeySecret' D
+ ESC 'Secret to generate TSIG Key' EQUALITY octetStringMatch SYNTAX 1.3.6.1.
+ 4.1.1466.115.121.1.40 SINGLE-VALUE )
+olcAttributeTypes: {42}( 2.16.840.1.113719.1.203.4.43 NAME 'dhcpDnsZoneServe
+ r' DESC 'Master server of the DNS Zone' EQUALITY caseIgnoreIA5Match SYNTAX 
+ 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
+olcAttributeTypes: {43}( 2.16.840.1.113719.1.203.4.44 NAME 'dhcpKeyDN' DESC 
+ 'The DNs of TSIG Key to use in secure dynamic updates. In case of locator o
+ bject, this will be list of TSIG keys.  In case of DHCP Service, Shared Net
+ work, Subnet and DNS Zone, it will be a single key.' EQUALITY distinguished
+ NameMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.12 )
+olcAttributeTypes: {44}( 2.16.840.1.113719.1.203.4.45 NAME 'dhcpZoneDN' DESC
+  'The DNs of DNS Zone. In case of locator object, this will be list of DNS 
+ Zones in the tree. In case of DHCP Service, Shared Network and Subnet, it w
+ ill be a single DNS Zone.' EQUALITY distinguishedNameMatch SYNTAX 1.3.6.1.4
+ .1.1466.115.121.1.12 )
+olcAttributeTypes: {45}( 2.16.840.1.113719.1.203.4.46 NAME 'dhcpFailOverPrim
+ aryServer' DESC 'IP address or DNS name of the server playing primary role 
+ in DHC Load Balancing and Fail over.' EQUALITY caseIgnoreIA5Match SYNTAX 1.
+ 3.6.1.4.1.1466.115.121.1.26 )
+olcAttributeTypes: {46}( 2.16.840.1.113719.1.203.4.47 NAME 'dhcpFailOverSeco
+ ndaryServer' DESC 'IP address or DNS name of the server playing secondary r
+ ole in DHC Load Balancing and Fail over.' EQUALITY caseIgnoreIA5Match SYNTA
+ X 1.3.6.1.4.1.1466.115.121.1.26 )
+olcAttributeTypes: {47}( 2.16.840.1.113719.1.203.4.48 NAME 'dhcpFailOverPrim
+ aryPort' DESC 'Port on which primary server listens for connections from it
+ s fail over peer (secondary server)' EQUALITY integerMatch SYNTAX 1.3.6.1.4
+ .1.1466.115.121.1.27 )
+olcAttributeTypes: {48}( 2.16.840.1.113719.1.203.4.49 NAME 'dhcpFailOverSeco
+ ndaryPort' DESC 'Port on which secondary server listens for connections fro
+ m its fail over peer (primary server)' EQUALITY integerMatch SYNTAX 1.3.6.1
+ .4.1.1466.115.121.1.27 )
+olcAttributeTypes: {49}( 2.16.840.1.113719.1.203.4.50 NAME 'dhcpFailOverResp
+ onseDelay' DESC 'Maximum response time in seconds, before Server assumes th
+ at connection to fail over peer has failed' EQUALITY integerMatch SYNTAX 1.
+ 3.6.1.4.1.1466.115.121.1.27 )
+olcAttributeTypes: {50}( 2.16.840.1.113719.1.203.4.51 NAME 'dhcpFailOverUnac
+ kedUpdates' DESC 'Number of BNDUPD messages that server can send before it 
+ receives BNDACK from its fail over peer' EQUALITY integerMatch SYNTAX 1.3.6
+ .1.4.1.1466.115.121.1.27 )
+olcAttributeTypes: {51}( 2.16.840.1.113719.1.203.4.52 NAME 'dhcpFailOverSpli
+ t' DESC 'Split between the primary and secondary servers for fail over purp
+ ose' EQUALITY integerMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 )
+olcAttributeTypes: {52}( 2.16.840.1.113719.1.203.4.53 NAME 'dhcpFailOverLoad
+ BalanceTime' DESC 'Cutoff time in seconds, after which load balance is disa
+ bled' EQUALITY integerMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 )
+olcAttributeTypes: {53}( 2.16.840.1.113719.1.203.4.54 NAME 'dhcpFailOverPeer
+ DN' DESC 'The DNs of Fail over peers. In case of locator object, this will 
+ be list of fail over peers in the tree. In case of Subnet and pool, it will
+  be a single Fail Over Peer' EQUALITY distinguishedNameMatch SYNTAX 1.3.6.1
+ .4.1.1466.115.121.1.12 )
+olcAttributeTypes: {54}( 2.16.840.1.113719.1.203.4.55 NAME 'dhcpServerDN' DE
+ SC 'List of all  DHCP Servers in the tree. Used by dhcpLocatorObject' EQUAL
+ ITY distinguishedNameMatch SYNTAX 1.3.6.1.4.1.1466.115.121.1.12 )
+olcAttributeTypes: {55}( 2.16.840.1.113719.1.203.4.56 NAME 'dhcpComments' DE
+ SC 'Generic attribute that allows coments  within any DHCP object' EQUALITY
+  caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 SINGLE-VALUE )
+olcAttributeTypes: {56}( 2.16.840.1.113719.1.203.4.57 NAME 'dhcpClientId' DE
+ SC 'client Identifier.' EQUALITY caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466
+ .115.121.1.26 )
+olcAttributeTypes: {57}( 2.16.840.1.113719.1.203.4.58 NAME 'dhcpRange6' DESC
+  'The starting & ending IP Addresses in the range (inclusive), separated by
+  a hyphen; if the range only contains one address, then just the address ca
+ n be specified with no hyphen.  Each range is defined as a separate value.'
+  EQUALITY caseIgnoreIA5Match SYNTAX 1.3.6.1.4.1.1466.115.121.1.26 )
+olcObjectClasses: {0}( 2.16.840.1.113719.1.203.6.1 NAME 'dhcpService' DESC '
+ Service object that represents the actual DHCP Service configuration. This 
+ is a container object.' SUP top STRUCTURAL MUST cn MAY ( dhcpPrimaryDN $ dh
+ cpSecondaryDN $ dhcpServerDN $ dhcpSharedNetworkDN $ dhcpSubnetDN $ dhcpGro
+ upDN $ dhcpHostDN $ dhcpClassesDN $ dhcpOptionsDN $ dhcpZoneDN $ dhcpKeyDN 
+ $ dhcpFailOverPeerDN $ dhcpStatements $ dhcpComments $ dhcpOption ) )
+olcObjectClasses: {1}( 2.16.840.1.113719.1.203.6.2 NAME 'dhcpSharedNetwork' 
+ DESC 'This stores configuration information for a shared network.' SUP top 
+ STRUCTURAL MUST cn MAY ( dhcpSubnetDN $ dhcpPoolDN $ dhcpOptionsDN $ dhcpZo
+ neDN $ dhcpStatements $ dhcpComments $ dhcpOption ) X-NDS_CONTAINMENT 'dhcp
+ Service' )
+olcObjectClasses: {2}( 2.16.840.1.113719.1.203.6.3 NAME 'dhcpSubnet' DESC 'T
+ his class defines a subnet. This is a container object.' SUP top STRUCTURAL
+  MUST ( cn $ dhcpNetMask ) MAY ( dhcpRange $ dhcpPoolDN $ dhcpGroupDN $ dhc
+ pHostDN $ dhcpClassesDN $ dhcpLeasesDN $ dhcpOptionsDN $ dhcpZoneDN $ dhcpK
+ eyDN $ dhcpFailOverPeerDN $ dhcpStatements $ dhcpComments $ dhcpOption ) X-
+ NDS_CONTAINMENT ( 'dhcpService' 'dhcpSharedNetwork' ) )
+olcObjectClasses: {3}( 2.16.840.1.113719.1.203.6.4 NAME 'dhcpPool' DESC 'Thi
+ s stores configuration information about a pool.' SUP top STRUCTURAL MUST (
+  cn $ dhcpRange ) MAY ( dhcpClassesDN $ dhcpPermitList $ dhcpLeasesDN $ dhc
+ pOptionsDN $ dhcpZoneDN $ dhcpKeyDN $ dhcpStatements $ dhcpComments $ dhcpO
+ ption ) X-NDS_CONTAINMENT ( 'dhcpSubnet' 'dhcpSharedNetwork' ) )
+olcObjectClasses: {4}( 2.16.840.1.113719.1.203.6.5 NAME 'dhcpGroup' DESC 'Gr
+ oup object that lists host DNs and parameters. This is a container object.'
+  SUP top STRUCTURAL MUST cn MAY ( dhcpHostDN $ dhcpOptionsDN $ dhcpStatemen
+ ts $ dhcpComments $ dhcpOption ) X-NDS_CONTAINMENT ( 'dhcpSubnet' 'dhcpServ
+ ice' ) )
+olcObjectClasses: {5}( 2.16.840.1.113719.1.203.6.6 NAME 'dhcpHost' DESC 'Thi
+ s represents information about a particular client' SUP top STRUCTURAL MUST
+  cn MAY ( dhcpLeaseDN $ dhcpHWAddress $ dhcpOptionsDN $ dhcpStatements $ dh
+ cpComments $ dhcpOption $ dhcpClientId ) X-NDS_CONTAINMENT ( 'dhcpService' 
+ 'dhcpSubnet' 'dhcpGroup' ) )
+olcObjectClasses: {6}( 2.16.840.1.113719.1.203.6.7 NAME 'dhcpClass' DESC 'Re
+ presents information about a collection of related clients.' SUP top STRUCT
+ URAL MUST cn MAY ( dhcpSubClassesDN $ dhcpOptionsDN $ dhcpStatements $ dhcp
+ Comments $ dhcpOption ) X-NDS_CONTAINMENT ( 'dhcpService' 'dhcpSubnet' ) )
+olcObjectClasses: {7}( 2.16.840.1.113719.1.203.6.8 NAME 'dhcpSubClass' DESC 
+ 'Represents information about a collection of related classes.' SUP top STR
+ UCTURAL MUST cn MAY ( dhcpClassData $ dhcpOptionsDN $ dhcpStatements $ dhcp
+ Comments $ dhcpOption ) X-NDS_CONTAINMENT 'dhcpClass' )
+olcObjectClasses: {8}( 2.16.840.1.113719.1.203.6.9 NAME 'dhcpOptions' DESC '
+ Represents information about a collection of options defined.' SUP top AUXI
+ LIARY MUST cn MAY ( dhcpOption $ dhcpComments ) X-NDS_CONTAINMENT ( 'dhcpSe
+ rvice' 'dhcpSharedNetwork' 'dhcpSubnet' 'dhcpPool' 'dhcpGroup' 'dhcpHost' '
+ dhcpClass' ) )
+olcObjectClasses: {9}( 2.16.840.1.113719.1.203.6.10 NAME 'dhcpLeases' DESC '
+ This class represents an IP Address, which may or may not have been leased.
+ ' SUP top STRUCTURAL MUST ( cn $ dhcpAddressState ) MAY ( dhcpExpirationTim
+ e $ dhcpStartTimeOfState $ dhcpLastTransactionTime $ dhcpBootpFlag $ dhcpDo
+ mainName $ dhcpDnsStatus $ dhcpRequestedHostName $ dhcpAssignedHostName $ d
+ hcpReservedForClient $ dhcpAssignedToClient $ dhcpRelayAgentInfo $ dhcpHWAd
+ dress ) X-NDS_CONTAINMENT ( 'dhcpService' 'dhcpSubnet' 'dhcpPool' ) )
+olcObjectClasses: {10}( 2.16.840.1.113719.1.203.6.11 NAME 'dhcpLog' DESC 'Th
+ is is the object that holds past information about the IP address. The cn i
+ s the time/date stamp when the address was assigned or released, the addres
+ s state at the time, if the address was assigned or released.' SUP top STRU
+ CTURAL MUST cn MAY ( dhcpAddressState $ dhcpExpirationTime $ dhcpStartTimeO
+ fState $ dhcpLastTransactionTime $ dhcpBootpFlag $ dhcpDomainName $ dhcpDns
+ Status $ dhcpRequestedHostName $ dhcpAssignedHostName $ dhcpReservedForClie
+ nt $ dhcpAssignedToClient $ dhcpRelayAgentInfo $ dhcpHWAddress $ dhcpErrorL
+ og ) X-NDS_CONTAINMENT ( 'dhcpLeases' 'dhcpPool' 'dhcpSubnet' 'dhcpSharedNe
+ twork' 'dhcpService' ) )
+olcObjectClasses: {11}( 2.16.840.1.113719.1.203.6.12 NAME 'dhcpServer' DESC 
+ 'DHCP Server Object' SUP top STRUCTURAL MUST cn MAY ( dhcpServiceDN $ dhcpL
+ ocatorDN $ dhcpVersion $ dhcpImplementation $ dhcpHashBucketAssignment $ dh
+ cpDelayedServiceParameter $ dhcpMaxClientLeadTime $ dhcpFailOverEndpointSta
+ te $ dhcpStatements $ dhcpComments $ dhcpOption ) X-NDS_CONTAINMENT ( 'orga
+ nization' 'organizationalunit' 'domain' ) )
+olcObjectClasses: {12}( 2.16.840.1.113719.1.203.6.13 NAME 'dhcpTSigKey' DESC
+  'TSIG key for secure dynamic updates' SUP top STRUCTURAL MUST ( cn $ dhcpK
+ eyAlgorithm $ dhcpKeySecret ) MAY dhcpComments X-NDS_CONTAINMENT ( 'dhcpSer
+ vice' 'dhcpSharedNetwork' 'dhcpSubnet' ) )
+olcObjectClasses: {13}( 2.16.840.1.113719.1.203.6.14 NAME 'dhcpDnsZone' DESC
+  'DNS Zone for updating leases' SUP top STRUCTURAL MUST ( cn $ dhcpDnsZoneS
+ erver ) MAY ( dhcpKeyDN $ dhcpComments ) X-NDS_CONTAINMENT ( 'dhcpService' 
+ 'dhcpSharedNetwork' 'dhcpSubnet' ) )
+olcObjectClasses: {14}( 2.16.840.1.113719.1.203.6.15 NAME 'dhcpFailOverPeer'
+  DESC 'This class defines the Fail over peer' SUP top STRUCTURAL MUST ( cn 
+ $ dhcpFailOverPrimaryServer $ dhcpFailOverSecondaryServer $ dhcpFailoverPri
+ maryPort $ dhcpFailOverSecondaryPort ) MAY ( dhcpFailOverResponseDelay $ dh
+ cpFailOverUnackedUpdates $ dhcpMaxClientLeadTime $ dhcpFailOverSplit $ dhcp
+ HashBucketAssignment $ dhcpFailOverLoadBalanceTime $ dhcpComments ) X-NDS_C
+ ONTAINMENT ( 'dhcpService' 'dhcpSharedNetwork' 'dhcpSubnet' ) )
+olcObjectClasses: {15}( 2.16.840.1.113719.1.203.6.16 NAME 'dhcpLocator' DESC
+  'Locator object for DHCP configuration in the tree. There will be a single
+  dhcpLocator object in the tree with links to all the DHCP objects in the t
+ ree' SUP top STRUCTURAL MUST cn MAY ( dhcpServiceDN $ dhcpServerDN $ dhcpSh
+ aredNetworkDN $ dhcpSubnetDN $ dhcpPoolDN $ dhcpGroupDN $ dhcpHostDN $ dhcp
+ ClassesDN $ dhcpKeyDN $ dhcpZoneDN $ dhcpFailOverPeerDN $ dhcpOption $ dhcp
+ Comments ) X-NDS_CONTAINMENT ( 'organization' 'organizationalunit' 'domain'
+  ) )
+olcObjectClasses: {16}( 2.16.840.1.113719.1.203.6.17 NAME 'dhcpSubnet6' DESC
+  'This class defines an IPv6 subnet. This is a container object.' SUP top S
+ TRUCTURAL MUST cn MAY ( dhcpRange6 $ dhcpPoolDN $ dhcpGroupDN $ dhcpHostDN 
+ $ dhcpClassesDN $ dhcpLeasesDN $ dhcpOptionsDN $ dhcpZoneDN $ dhcpKeyDN $ d
+ hcpFailOverPeerDN $ dhcpStatements $ dhcpComments $ dhcpOption $ dhcpPermit
+ List ) X-NDS_CONTAINMENT ( 'dhcpService' 'dhcpSharedNetwork' ) )
+olcObjectClasses: {17}( 2.16.840.1.113719.1.203.6.18 NAME 'dhcpPool6' DESC '
+ This stores configuration information about an IPv6 pool.' SUP top STRUCTUR
+ AL MUST ( cn $ dhcpRange6 ) MAY ( dhcpClassesDN $ dhcpPermitList $ dhcpLeas
+ esDN $ dhcpOptionsDN $ dhcpZoneDN $ dhcpKeyDN $ dhcpStatements $ dhcpCommen
+ ts $ dhcpOption ) X-NDS_CONTAINMENT ( 'dhcpSubnet6' 'dhcpSharedNetwork' ) )
+structuralObjectClass: olcSchemaConfig
+entryUUID: 47c08a92-b40d-1037-8f08-d92a048864e3
+creatorsName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+createTimestamp: 20180304153432Z
+entryCSN: 20180304153432.546115Z#000000#000#000000
+modifiersName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+modifyTimestamp: 20180304153432Z
+
+dn: olcBackend={0}mdb,cn=config
+objectClass: olcBackendConfig
+olcBackend: {0}mdb
+structuralObjectClass: olcBackendConfig
+entryUUID: eabf458c-b3d4-1037-8b7d-3569e2a942b6
+creatorsName: cn=admin,cn=config
+createTimestamp: 20180304085104Z
+entryCSN: 20180304085104.692841Z#000000#000#000000
+modifiersName: cn=admin,cn=config
+modifyTimestamp: 20180304085104Z
+
+dn: olcDatabase={-1}frontend,cn=config
+objectClass: olcDatabaseConfig
+objectClass: olcFrontendConfig
+olcDatabase: {-1}frontend
+olcAccess: {0}to * by dn.exact=gidNumber=0+uidNumber=0,cn=peercred,cn=extern
+ al,cn=auth manage by * break
+olcAccess: {1}to dn.exact="" by * read
+olcAccess: {2}to dn.base="cn=Subschema" by * read
+olcSizeLimit: 500
+structuralObjectClass: olcDatabaseConfig
+entryUUID: eabe686a-b3d4-1037-8b75-3569e2a942b6
+creatorsName: cn=config
+createTimestamp: 20180304085104Z
+entryCSN: 20180304085104.687180Z#000000#000#000000
+modifiersName: cn=config
+modifyTimestamp: 20180304085104Z
+
+dn: olcDatabase={0}config,cn=config
+objectClass: olcDatabaseConfig
+olcDatabase: {0}config
+olcAccess: {0}to * by dn.exact=gidNumber=0+uidNumber=0,cn=peercred,cn=extern
+ al,cn=auth manage by * break
+olcRootDN: cn=admin,cn=config
+structuralObjectClass: olcDatabaseConfig
+entryUUID: eabe7602-b3d4-1037-8b76-3569e2a942b6
+creatorsName: cn=config
+createTimestamp: 20180304085104Z
+olcRootPW:: e1NTSEF9NmZ6ZEQ5U0JjTFcwMy9yRVRNVktuU1RNV1lHRHJpblA=
+entryCSN: 20180304100706.050262Z#000000#000#000000
+modifiersName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+modifyTimestamp: 20180304100706Z
+
+dn: olcDatabase={1}mdb,cn=config
+objectClass: olcDatabaseConfig
+objectClass: olcMdbConfig
+olcDatabase: {1}mdb
+olcDbDirectory: /var/lib/openldap/openldap-data
+olcSuffix: dc=alcocer,dc=net
+olcAccess: {0}to * by dn.base="cn=replicator,dc=alcocer,dc=net" read by * br
+ eak
+olcAccess: {1}to attrs=userPassword by self write by anonymous auth by * non
+ e
+olcAccess: {2}to attrs=shadowLastChange by self write by * read
+olcAccess: {3}to * by * read
+olcLastMod: TRUE
+olcRootDN: cn=admin,dc=alcocer,dc=net
+olcRootPW:: e1NTSEF9NmZ6ZEQ5U0JjTFcwMy9yRVRNVktuU1RNV1lHRHJpblA=
+olcDbCheckpoint: 512 30
+olcDbIndex: objectClass eq
+olcDbIndex: cn,uid eq
+olcDbIndex: uidNumber,gidNumber eq
+olcDbIndex: member,memberUid eq
+olcDbMaxSize: 1073741824
+structuralObjectClass: olcMdbConfig
+entryUUID: eabf4d2a-b3d4-1037-8b7e-3569e2a942b6
+creatorsName: cn=admin,cn=config
+createTimestamp: 20180304085104Z
+entryCSN: 20180305203554.882835Z#000000#000#000000
+modifiersName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+modifyTimestamp: 20180305203554Z
+
+dn: olcOverlay={0}syncprov,olcDatabase={1}mdb,cn=config
+objectClass: olcSyncProvConfig
+olcOverlay: {0}syncprov
+olcSpCheckpoint: 100 10
+structuralObjectClass: olcSyncProvConfig
+entryUUID: 6509c27a-b3e1-1037-81e4-61a451f53098
+creatorsName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+createTimestamp: 20180304102023Z
+entryCSN: 20180304102023.823760Z#000000#000#000000
+modifiersName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+modifyTimestamp: 20180304102023Z
+
+dn: olcOverlay={1}valsort,olcDatabase={1}mdb,cn=config
+objectClass: olcConfig
+objectClass: olcOverlayConfig
+objectClass: olcValSortConfig
+objectClass: top
+olcOverlay: valsort
+structuralObjectClass: olcValSortConfig
+entryUUID: fc0a38e0-b5a2-1037-9011-d758827de6aa
+creatorsName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+createTimestamp: 20180306155841Z
+olcValSortAttr: dhcpStatements cn=DHCPconfig,ou=dhcpd,ou=Services,dc=alcocer
+ ,dc=net weighted
+entryCSN: 20180306203631.441266Z#000000#000#000000
+modifiersName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+modifyTimestamp: 20180306203631Z
+
