@@ -148,9 +148,21 @@ function init_db(){
     kill_slapd
 }
 
+function backup_ldap(){
+    printf 'Haciendo backup del actual contenido...\n'
+    /usr/sbin/slapd -u ldap -g ldap
+    if [[ $? -eq 0 ]]; then
+        [[ ! -d /backup ]] && mkdir /backup
+        /usr/sbin/slapcat -n 0 -l /backup/config-$(date +%Y%m%d_%H%M%S).ldif
+        /usr/sbin/slapcat -n 1 -l /backup/database-$(date +%Y%m%d_%H%M%S).ldif
+    fi
+    kill_slapd
+}
+
 function main(){
     printf 'Comprobación de los directorios..\n'
     check_dirs
+    [[ $BACKUP -eq 1 ]] && backup_ldap
     # Si se especifica o si no hay base de datos, se inicializa la BBDD de LDAP
     if [[ -f $RESTORE_DB_FILE || -f $RESTORE_CONF_FILE ]]; then
         restore_ldap

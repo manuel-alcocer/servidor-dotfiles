@@ -1,0 +1,8 @@
+version: '3.6'
+
+services:
+  dhcpd:
+    build:
+      context: builders/dhcpd-ldap
+    image: user/dhcpd-ldap
+

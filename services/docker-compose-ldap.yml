@@ -10,19 +10,18 @@ services:
       - "389:389"
       - "636:636"
     environment:
-      - INIT_DB=1
-      - SUFFIX="dc=alcocer,dc=net"
-      - ROOTPW="root"
-      - ROOTDN="cn=admin,dc=alcocer,dc=net"
-        #- RESTORE_CONF_ALWAYS=1
-        #- RESTORE_DB_ALWAYS=1
+      - RESTORE_CONF_ALWAYS=1
+      - RESTORE_DB_ALWAYS=1
+      - BACKUP=1
     volumes:
       - slapd_db:/etc/openldap
       - slapd_var:/var/lib/openldap
+      - slapd_backup:/backup
       - /root/ldap_backup/ldap-config.ldif:/restore-config.ldif:ro
       - /root/ldap_backup/ldap-database.ldif:/restore-database.ldif:ro
 
 volumes:
   slapd_db:
   slapd_var:
+  slapd_backup:
 
