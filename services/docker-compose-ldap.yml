@@ -19,6 +19,7 @@ services:
       - slapd_backup:/backup
       - /root/ldap_backup/ldap-config.ldif:/restore-config.ldif:ro
       - /root/ldap_backup/ldap-database.ldif:/restore-database.ldif:ro
+    restart: unless-stopped
 
 volumes:
   slapd_db:

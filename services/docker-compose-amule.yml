@@ -17,5 +17,6 @@ services:
     environment:
       - ECPASSWORD=admin.1234
       - WEBPASSWORD=admin.1234
+    restart: unless-stopped
 
 

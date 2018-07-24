@@ -2,7 +2,16 @@ version: '3.6'
 
 services:
   dhcpd:
+    container_name: dhcpd
     build:
       context: builders/dhcpd-ldap
     image: user/dhcpd-ldap
+    environment:
+      - DEVEL_MODE=1
+    volumes:
+      - /root/dhcp/:/etc/dhcp/
+    hostname: dhcpd0
+    domainname: alcocer.net
+    network_mode: "host"
+    restart: unless-stopped
 
