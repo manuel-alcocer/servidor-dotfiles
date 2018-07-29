@@ -15,8 +15,8 @@ services:
       - /mnt/hitachi1T/amuledock/Incoming:/var/lib/amule/.aMule/Incoming
       - /mnt/hitachi1T/amuledock/Temp:/var/lib/amule/.aMule/Temp
     environment:
-      - ECPASSWORD=admin.1234
-      - WEBPASSWORD=admin.1234
+      - ECPASSWORD=alcocer.1234
+      - WEBPASSWORD=alcocer.1234
     restart: unless-stopped
 
 
