@@ -1,0 +1,15 @@
+version: '3.6'
+
+services:
+  rancher:
+    container_name: rancher
+    image: rancher/server:stable
+    restart: unless-stopped
+    ports:
+      - "80:8080"
+    volumes:
+      - /root/.ssh/:/root/.ssh/
+      - mysql_vol:/var/lib/mysql
+
+volumes:
+  mysql_vol:
