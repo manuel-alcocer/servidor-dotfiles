@@ -6,6 +6,6 @@ services:
     image: rancher/server:stable
     restart: unless-stopped
     ports:
-      - "80:8080"
+      - "8080:8080"
     volumes:
       - /root/.ssh/:/root/.ssh/
