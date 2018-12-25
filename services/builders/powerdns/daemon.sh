@@ -8,8 +8,8 @@ PDNS_CMD='/usr/sbin/pdns_server'
 
 # si MAX_RETRIES < 1: espera infinito hasta que haya conexión
 
-MAX_RETRIES=5
-INTERVAL=5
+MAX_RETRIES=10
+INTERVAL=10
 
 declare DAEMON_OPTS
 
