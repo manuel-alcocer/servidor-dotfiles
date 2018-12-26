@@ -44,7 +44,7 @@ function load_options(){
 }
 
 function create_pdns_db(){
-    $MYSQL_CMD -e "create database ${PDNS_DB}"
+    $MYSQL_CMD -e "create database ${PDNS_DB} collate 'utf8_unicode_ci'"
     (( $? )) && printf 'No se puede crear la base de datos.\nSaliendo...\n' && \
         exit 1
 }

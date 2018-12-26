@@ -2,15 +2,15 @@
 version: '3.6'
 
 services:
-  mariadb:
-    container_name: mariadb0
-    image: mariadb
-    restart: unless-stopped
-    env_file: .env
-    volumes:
-      - mariadb0vol:/var/lib/mysql
-    ports:
-      - "3306:3306"
+    #  mariadb:
+    #    container_name: mariadb0
+    #    image: mariadb/server
+    #    restart: unless-stopped
+    #    env_file: .env
+    #    volumes:
+    #      - mariadb0vol:/var/lib/mysql
+    #    ports:
+    #      - "3306:3306"
 
   adminer:
     container_name: adminer0
@@ -19,23 +19,26 @@ services:
     env_file: .env
     ports:
       - "8080:8080"
-    depends_on:
-      - mariadb
+    networks:
+      odroidnet:
+        ipv4_address: 172.18.0.101
+        #    depends_on:
+        #      - mariadb
 
-  openldap:
-    container_name: openldap
-    build:
-      context: builders/openldap
-    image: user/ldap
-    restart: unless-stopped
-    ports:
-      - "389:389"
-      - "389:389/udp"
-    entrypoint:
-      - /bin/bash
-      - /etc/openldap/daemon.sh
-    secrets:
-      - openldap_pw
+        #  openldap:
+        #    container_name: openldap
+        #    build:
+        #      context: builders/openldap
+        #    image: user/ldap
+        #    restart: unless-stopped
+        #    ports:
+        #      - "389:389"
+        #      - "389:389/udp"
+        #    entrypoint:
+        #      - /bin/bash
+        #      - /daemon.sh
+        #    secrets:
+        #      - openldap_pw
 
   powerdns:
     container_name: pdns_server0
@@ -55,39 +58,22 @@ services:
       - /bin/bash
       - /root/daemon.sh
       - start
-    depends_on:
-      - mariadb
+        #    depends_on:
+        #      - mariadb
     ports:
       - "53:53/tcp"
       - "53:53/udp"
       - "8081:8081"
+    networks:
+      odroidnet:
+        ipv4_address: 172.18.0.100
 
-        #  powerdnsadmin:
-        #    container_name: powerdnsadmin0
-        #    build:
-        #      context: ./builders/powerdnsadmin
-        #      dockerfile: Dockerfile
-        #    image: user/powerdnsadmin:mariadb
-        #    restart: unless-stopped
-        #    env_file: .env
-        #    environment:
-        #      - LC_ALL=C.UTF-8
-        #      - LANG=C.UTF-8
-        #      - FLASK_APP=app/__init__.py
-        #    entrypoint:
-        #      - bin/bash
-        #      - /opt/web/daemon/daemon.sh
-        #    ports:
-        #      - "9191:9191"
-        #    depends_on:
-        #      - mariadb
-
-  powerdnsadmin_sqlite:
-    container_name: powerdnsadmin0sqlite
+  powerdnsadmin:
+    container_name: powerdnsadmin0
     build:
       context: ./builders/powerdnsadmin
       dockerfile: Dockerfile
-    image: user/powerdnsadmin:sqlite
+    image: user/powerdnsadmin:mariadb
     restart: unless-stopped
     env_file: .env
     environment:
@@ -97,13 +83,45 @@ services:
     entrypoint:
       - bin/bash
       - /opt/web/daemon/daemon.sh
-      - start
     ports:
       - "9191:9191"
+    networks:
+      odroidnet:
+        ipv4_address: 172.18.0.102
+        #    depends_on:
+        #      - mariadb
 
-volumes:
-  mariadb0vol:
+        #  powerdnsadmin_sqlite:
+        #    container_name: powerdnsadmin0sqlite
+        #    build:
+        #      context: ./builders/powerdnsadmin_sqlite
+        #      dockerfile: Dockerfile
+        #    image: user/powerdnsadmin:sqlite
+        #    restart: unless-stopped
+        #    env_file: .env
+        #    environment:
+        #      - LC_ALL=C.UTF-8
+        #      - LANG=C.UTF-8
+        #      - FLASK_APP=app/__init__.py
+        #    entrypoint:
+        #      - /bin/bash
+        #      - /opt/web/daemon/daemon.sh
+        #      - start
+        #    ports:
+        #      - "9191:9191"
+
+        #volumes:
+        #  mariadb0vol:
 
 secrets:
   openldap_pw:
     file: ./builders/openldap/openldap_pw.txt
+
+networks:
+  odroidnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.18.0.0/24
+        
