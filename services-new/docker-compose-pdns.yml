@@ -2,48 +2,53 @@
 version: '3.6'
 
 services:
-    #  mariadb:
-    #    container_name: mariadb0
-    #    image: mariadb/server
-    #    restart: unless-stopped
-    #    env_file: .env
-    #    volumes:
-    #      - mariadb0vol:/var/lib/mysql
-    #    ports:
-    #      - "3306:3306"
+  mariadb:
+    container_name: mariadb
+    image: bitnami/mariadb
+    restart: unless-stopped
+    env_file: ./mariadb.env
+    volumes:
+      - mariadb0vol:/bitnami/mariadb
+    ports:
+      - "3306:3306"
+    networks:
+      - powerdns-net
 
   adminer:
     container_name: adminer0
     image: adminer
     restart: unless-stopped
-    env_file: .env
+    env_file: ./pdns.env
     ports:
       - "8080:8080"
-        #    depends_on:
-        #      - mariadb
+    depends_on:
+      - mariadb
+    networks:
+      - powerdns-net
 
-  powerdns:
-    container_name: pdns_server0
-    env_file: .env
+  pdns-authserver:
+    container_name: pdns_authserver
+    env_file: ./pdns.env
     build:
-      context: ./builders/powerdns
-      args:
-        - PDNS_DB
-        - PDNS_USER
-        - PDNS_USER_PASSWD
-        - PDNS_API_KEY
-        - PDNS_WEB_PORT
-        - PDNS_WEB_PASSWD
+      context: ./builders/pdns-authserver
     image: user/powerdns
     restart: unless-stopped
     entrypoint:
       - /bin/bash
-      - /root/daemon.sh
+      - /entrypoint.sh
       - start
-        #    depends_on:
-        #      - mariadb
     ports:
       - "53:53/tcp"
       - "53:53/udp"
       - "8081:8081"
+    depends_on:
+      - mariadb
+    networks:
+      - powerdns-net
 
+networks:
+  powerdns-net:
+    driver: bridge
+
+volumes:
+  mariadb0vol:
