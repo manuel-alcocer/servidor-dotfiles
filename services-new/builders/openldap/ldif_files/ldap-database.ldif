@@ -1,0 +1,700 @@
+dn: dc=alcocer,dc=net
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: alcocer.net
+dc: alcocer
+structuralObjectClass: organization
+entryUUID: eacd00e6-b3d4-1037-9a48-b59f797234a4
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304085104Z
+entryCSN: 20180304085104.782745Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180304085104Z
+contextCSN: 20180627083347.263381Z#000000#000#000000
+
+dn: cn=admin,dc=alcocer,dc=net
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: admin
+description: LDAP administrator
+userPassword:: e1NTSEF9NmZ6ZEQ5U0JjTFcwMy9yRVRNVktuU1RNV1lHRHJpblA=
+structuralObjectClass: organizationalRole
+entryUUID: ead20fa0-b3d4-1037-9a49-b59f797234a4
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304085104Z
+entryCSN: 20180304085104.815967Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180304085104Z
+
+dn: cn=replicator,dc=alcocer,dc=net
+objectClass: top
+objectClass: organizationalRole
+objectClass: simpleSecurityObject
+cn: replicator
+userPassword:: e1NTSEF9R3liV2pPQ1Nnbk9lalJtRHJtekVIZDExTzhobktJSDM=
+structuralObjectClass: organizationalRole
+entryUUID: ab7163ca-b3e2-1037-81e6-61a451f53098
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304102931Z
+entryCSN: 20180304102931.440174Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180304102931Z
+
+dn: ou=Users,dc=alcocer,dc=net
+ou: Users
+objectClass: top
+objectClass: organizationalUnit
+structuralObjectClass: organizationalUnit
+entryUUID: e1c927e2-b40e-1037-8f33-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154600Z
+entryCSN: 20180304154600.468423Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180304154600Z
+
+dn: ou=Services,dc=alcocer,dc=net
+ou: services
+objectClass: organizationalUnit
+objectClass: top
+structuralObjectClass: organizationalUnit
+entryUUID: e1db6182-b40e-1037-8f34-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154600Z
+entryCSN: 20180304154600.587872Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180304154600Z
+
+dn: ou=dhcpd,ou=Services,dc=alcocer,dc=net
+ou: dhcpd
+objectClass: organizationalUnit
+objectClass: top
+structuralObjectClass: organizationalUnit
+entryUUID: e1eac6ae-b40e-1037-8f35-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154600Z
+entryCSN: 20180304154600.688770Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180304154600Z
+
+dn: cn=srv001.alcocer.net,ou=dhcpd,ou=Services,dc=alcocer,dc=net
+cn: srv001.alcocer.net
+objectClass: dhcpServer
+objectClass: top
+structuralObjectClass: dhcpServer
+entryUUID: e1fa7928-b40e-1037-8f36-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154600Z
+dhcpStatements: failover peer "dhcp-failover" { primary; address 10.0.10.1; 
+ port 520; peer address 10.0.10.2; peer port 520; max-response-delay 30; max
+ -unacked-updates 10; load balance max seconds 3; mclt 3600; split 128; }
+dhcpServiceDN: cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,dc=net
+entryCSN: 20180306155550.057353Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180306155550Z
+
+dn: cn=srv002.alcocer.net,ou=dhcpd,ou=Services,dc=alcocer,dc=net
+cn: srv002.alcocer.net
+objectClass: dhcpServer
+objectClass: top
+structuralObjectClass: dhcpServer
+entryUUID: e2096438-b40e-1037-8f37-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154600Z
+dhcpStatements: failover peer "dhcp-failover" { secondary; address 10.0.10.2
+ ; port 520; peer address 10.0.10.1; peer port 520; max-response-delay 30; m
+ ax-unacked-updates 10; load balance max seconds 3; }
+dhcpServiceDN: cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,dc=net
+entryCSN: 20180306155555.049203Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180306155555Z
+
+dn: cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,dc=net
+dhcpPrimaryDN: cn=srv001.alcocer.net,ou=dhcpd,ou=Services,dc=alcocer,dc=net
+dhcpSecondaryDN: cn=srv002.alcocer.net,ou=dhcpd,ou=Services,dc=alcocer,dc=ne
+ t
+objectClass: dhcpService
+objectClass: top
+structuralObjectClass: dhcpService
+entryUUID: e219314c-b40e-1037-8f38-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154600Z
+cn: DHCPConfig
+dhcpStatements: {1}authoritative
+dhcpStatements: {2}ddns-update-style interim
+dhcpStatements: {3}omapi-port 7911
+dhcpStatements: {4}omapi-key omapi_key
+dhcpStatements: {5}log-facility local7
+dhcpStatements: {6}use-host-decl-names on
+dhcpStatements: {7}default-lease-time 86400
+dhcpStatements: {8}max-lease-time 86400
+dhcpOption: rfc3442-classless-static-routes code 121 = array of unsigned int
+ eger 8
+dhcpOption: ms-classless-static-routes code 249 = array of integer 8
+entryCSN: 20180422052148.400424Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180422052148Z
+
+dn: ou=Zones,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,dc=net
+ou: Zones
+objectClass: top
+objectClass: organizationalUnit
+structuralObjectClass: organizationalUnit
+entryUUID: e228f30c-b40e-1037-8f39-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154601Z
+entryCSN: 20180304154601.096226Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180304154601Z
+
+dn: ou=Hosts,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,dc=net
+ou: Hosts
+objectClass: top
+objectClass: organizationalUnit
+structuralObjectClass: organizationalUnit
+entryUUID: e236f5f6-b40e-1037-8f3a-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154601Z
+entryCSN: 20180304154601.188051Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180304154601Z
+
+dn: cn=VLAN3 NW,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,dc=net
+cn: VLAN3 NW
+objectClass: top
+objectClass: dhcpSharedNetwork
+structuralObjectClass: dhcpSharedNetwork
+entryUUID: e2461540-b40e-1037-8f3b-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154601Z
+entryCSN: 20180304154601.287158Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180304154601Z
+
+dn: cn=VLAN6 NW,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,dc=net
+cn: VLAN6 NW
+objectClass: top
+objectClass: dhcpSharedNetwork
+structuralObjectClass: dhcpSharedNetwork
+entryUUID: e253b39e-b40e-1037-8f3c-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154601Z
+entryCSN: 20180304154601.376412Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180304154601Z
+
+dn: cn=10.0.0.0,cn=VLAN3 NW,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,dc
+ =net
+dhcpOption: broadcast-address 10.0.255.255
+dhcpOption: domain-name "alcocer.net"
+dhcpOption: subnet-mask 255.255.0.0
+dhcpOption: domain-search "alcocer.net"
+dhcpOption: domain-name-servers 10.0.10.1
+dhcpOption: routers 10.0.10.1
+dhcpOption: ms-classless-static-routes 24,10,188,0,10,0,0,15,0,10,0,10,1
+dhcpOption: rfc3442-classless-static-routes 24,10,188,0,10,0,0,15,0,10,0,10,
+ 1
+dhcpNetMask: 16
+cn: 10.0.0.0
+objectClass: dhcpOptions
+objectClass: dhcpSubnet
+objectClass: top
+structuralObjectClass: dhcpSubnet
+entryUUID: e265adc4-b40e-1037-8f3d-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154601Z
+dhcpStatements: {0}next-server 10.0.0.11
+dhcpStatements: {1}filename "pxelinux.0"
+entryCSN: 20180422065230.011294Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180422065230Z
+
+dn: cn=172.26.0.0,cn=VLAN6 NW,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,
+ dc=net
+dhcpOption: subnet-mask 255.255.0.0
+dhcpOption: broadcast-address 172.26.255.255
+dhcpOption: routers 172.26.1.10
+dhcpOption: domain-name "linuxarena.net"
+dhcpOption: domain-search "linuxarena.net", "alcocer.net"
+dhcpOption: domain-name-servers 10.0.10.1
+dhcpStatements: deny unknown-clients
+dhcpNetMask: 16
+cn: 172.26.0.0
+objectClass: dhcpOptions
+objectClass: dhcpSubnet
+objectClass: top
+structuralObjectClass: dhcpSubnet
+entryUUID: e275e356-b40e-1037-8f3e-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154601Z
+entryCSN: 20180304160846.951271Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180304160846Z
+
+dn: cn=pool1,cn=10.0.0.0,cn=VLAN3 NW,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=a
+ lcocer,dc=net
+dhcpOption: domain-name "dyn.alcocer.net"
+dhcpStatements: failover peer "dhcp-failover"
+objectClass: dhcpOptions
+objectClass: dhcpPool
+objectClass: top
+structuralObjectClass: dhcpPool
+entryUUID: e292645e-b40e-1037-8f40-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154601Z
+cn: pool1
+dhcpPermitList: allow unknown-clients
+dhcpPermitList: deny known-clients
+dhcpRange: 10.0.100.1 10.0.100.255
+dhcpZoneDN: cn=dyn.alcocer.net.,ou=Zones,cn=DHCPConfig,ou=dhcpd,ou=Services,
+ dc=alcocer,dc=net
+entryCSN: 20180306155422.654673Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180306155422Z
+
+dn: cn=pool2,cn=172.26.0.0,cn=VLAN6 NW,cn=DHCPConfig,ou=dhcpd,ou=Services,dc
+ =alcocer,dc=net
+dhcpOption: domain-search "linuxarena.net"
+dhcpOption: domain-name "dyn.linuxarena.net"
+dhcpPermitList: allow unknown-clients
+dhcpPermitList: deny known-clients
+dhcpStatements: failover peer "dhcp-failover"
+objectClass: top
+objectClass: dhcpPool
+structuralObjectClass: dhcpPool
+entryUUID: e2a1f6da-b40e-1037-8f41-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154601Z
+cn: pool2
+dhcpRange: 172.26.100.0 172.26.100.255
+dhcpZoneDN: cn=dyn.linuxarena.net.,ou=Zones,cn=DHCPConfig,ou=dhcpd,ou=Servic
+ es,dc=alcocer,dc=net
+entryCSN: 20180306155434.803006Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180306155434Z
+
+dn: cn=zabbixserver,ou=Hosts,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,d
+ c=net
+dhcpHWAddress: ethernet 2a:5a:60:74:2b:ce
+dhcpStatements: fixed-address 10.0.0.25
+cn: zabbixserver
+objectClass: dhcpHost
+objectClass: top
+structuralObjectClass: dhcpHost
+entryUUID: e2b38b5c-b40e-1037-8f42-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154602Z
+entryCSN: 20180304154602.004522Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180304154602Z
+
+dn: cn=plexserver,ou=Hosts,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,dc=
+ net
+dhcpHWAddress: ethernet 06:4e:a8:09:4a:5a
+dhcpStatements: fixed-address 10.0.0.20
+cn: plexserver
+objectClass: dhcpHost
+objectClass: top
+structuralObjectClass: dhcpHost
+entryUUID: e2c0c894-b40e-1037-8f43-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154602Z
+entryCSN: 20180304154602.091289Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180304154602Z
+
+dn: cn=zhora,ou=Hosts,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,dc=net
+dhcpHWAddress: ethernet f0:de:f1:03:bd:24
+dhcpStatements: fixed-address 10.0.0.100
+cn: zhora
+objectClass: dhcpHost
+objectClass: top
+structuralObjectClass: dhcpHost
+entryUUID: e2cfd3e8-b40e-1037-8f44-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154602Z
+entryCSN: 20180304154602.189884Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180304154602Z
+
+dn: cn=rachel,ou=Hosts,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,dc=net
+dhcpHWAddress: ethernet f0:de:f1:26:c4:41
+dhcpStatements: fixed-address 10.0.0.102
+cn: rachel
+objectClass: dhcpHost
+objectClass: top
+structuralObjectClass: dhcpHost
+entryUUID: e2de711e-b40e-1037-8f45-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154602Z
+entryCSN: 20180304154602.285658Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180304154602Z
+
+dn: cn=pris,ou=Hosts,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,dc=net
+dhcpHWAddress: ethernet f0:79:59:66:6d:15
+dhcpStatements: fixed-address 10.0.0.101, 172.26.0.101
+cn: pris
+objectClass: dhcpHost
+objectClass: top
+structuralObjectClass: dhcpHost
+entryUUID: e2ef496c-b40e-1037-8f46-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154602Z
+entryCSN: 20180304161740.159266Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180304161740Z
+
+dn: cn=airtime,ou=Hosts,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,dc=net
+dhcpHWAddress: ethernet fe:b8:2d:50:39:c6
+dhcpStatements: fixed-address 10.0.10.19
+cn: airtime
+objectClass: dhcpHost
+objectClass: top
+structuralObjectClass: dhcpHost
+entryUUID: e2fd1fb0-b40e-1037-8f47-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154602Z
+entryCSN: 20180304154602.486734Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180304154602Z
+
+dn: cn=grafana,ou=Hosts,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,dc=net
+dhcpHWAddress: ethernet de:33:d2:72:13:48
+dhcpStatements: fixed-address 10.0.0.15
+cn: grafana
+objectClass: dhcpHost
+objectClass: top
+structuralObjectClass: dhcpHost
+entryUUID: e30df5ba-b40e-1037-8f48-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154602Z
+entryCSN: 20180304154602.597069Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180304154602Z
+
+dn: cn=dhcpd,ou=Users,dc=alcocer,dc=net
+objectClass: simpleSecurityObject
+objectClass: top
+objectClass: organizationalRole
+structuralObjectClass: organizationalRole
+entryUUID: e330de18-b40e-1037-8f4a-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154602Z
+cn: dhcpd
+userPassword:: e1NTSEF9U3FIWjFlVGttNVhRWU1nRHZrVFJSeU1qaUZwUjBpMmZuTE9CVmc9P
+ Q==
+entryCSN: 20180305203703.897187Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180305203703Z
+
+dn: cn=linuxarena.net.,ou=Zones,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcoce
+ r,dc=net
+objectClass: top
+objectClass: dhcpDnsZone
+structuralObjectClass: dhcpDnsZone
+entryUUID: e33e8a9a-b40e-1037-8f4b-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154602Z
+dhcpDnsZoneServer: 10.0.10.1
+cn: linuxarena.net.
+dhcpKeyDN: cn=pdns_update_key,ou=Zones,cn=DHCPConfig,ou=dhcpd,ou=Services,dc
+ =alcocer,dc=net
+entryCSN: 20180306155531.181003Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180306155531Z
+
+dn: cn=0.10.in-addr.arpa.,ou=Zones,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alc
+ ocer,dc=net
+cn: 0.10.in-addr.arpa.
+objectClass: top
+objectClass: dhcpDnsZone
+structuralObjectClass: dhcpDnsZone
+entryUUID: e34d9fc6-b40e-1037-8f4c-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154603Z
+dhcpDnsZoneServer: 10.0.10.1
+dhcpKeyDN: cn=pdns_update_key,ou=Zones,cn=DHCPConfig,ou=dhcpd,ou=Services,dc
+ =alcocer,dc=net
+entryCSN: 20180306155501.922267Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180306155501Z
+
+dn: cn=alcocer.net.,ou=Zones,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,d
+ c=net
+cn: alcocer.net.
+objectClass: top
+objectClass: dhcpDnsZone
+structuralObjectClass: dhcpDnsZone
+entryUUID: e35d098e-b40e-1037-8f4d-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154603Z
+dhcpDnsZoneServer: 10.0.10.1
+dhcpKeyDN: cn=pdns_update_key,ou=Zones,cn=DHCPConfig,ou=dhcpd,ou=Services,dc
+ =alcocer,dc=net
+entryCSN: 20180306155512.317943Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180306155512Z
+
+dn: cn=dyn.alcocer.net.,ou=Zones,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcoc
+ er,dc=net
+cn: dyn.alcocer.net.
+objectClass: top
+objectClass: dhcpDnsZone
+structuralObjectClass: dhcpDnsZone
+entryUUID: e36c6960-b40e-1037-8f4e-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154603Z
+dhcpDnsZoneServer: 10.0.10.1
+dhcpKeyDN: cn=pdns_update_key,ou=Zones,cn=DHCPConfig,ou=dhcpd,ou=Services,dc
+ =alcocer,dc=net
+entryCSN: 20180306155518.916497Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180306155518Z
+
+dn: cn=omapi_key,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,dc=net
+dhcpKeyAlgorithm: hmac-md5
+cn: omapi_key
+objectClass: top
+objectClass: dhcpTSigKey
+structuralObjectClass: dhcpTSigKey
+entryUUID: e37b987c-b40e-1037-8f4f-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154603Z
+dhcpKeySecret: zCdOsu0Ec6Im125+HY3ZXg==
+entryCSN: 20180304164221.648646Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180304164221Z
+
+dn: cn=pdns_update_key,ou=Zones,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcoce
+ r,dc=net
+dhcpKeyAlgorithm: hmac-md5
+objectClass: top
+objectClass: dhcpTSigKey
+structuralObjectClass: dhcpTSigKey
+entryUUID: e38ae85e-b40e-1037-8f50-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304154603Z
+dhcpKeySecret: 3ZWd4jNjMNRJj18ch1p8FA==
+cn: pdns_update_key
+entryCSN: 20180304165120.488544Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180304165120Z
+
+dn: cn=26.172.in-addr.arpa.,ou=Zones,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=a
+ lcocer,dc=net
+cn: 26.172.in-addr.arpa.
+objectClass: top
+objectClass: dhcpDnsZone
+structuralObjectClass: dhcpDnsZone
+entryUUID: badc64d4-b411-1037-8f55-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304160623Z
+dhcpDnsZoneServer: 10.0.10.1
+dhcpKeyDN: cn=pdns_update_key,ou=Zones,cn=DHCPConfig,ou=dhcpd,ou=Services,dc
+ =alcocer,dc=net
+entryCSN: 20180306155507.041968Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180306155507Z
+
+dn: cn=dyn.linuxarena.net.,ou=Zones,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=al
+ cocer,dc=net
+dhcpDnsZoneServer: 10.0.10.1
+cn: dyn.linuxarena.net.
+objectClass: top
+objectClass: dhcpDnsZone
+structuralObjectClass: dhcpDnsZone
+entryUUID: e8a656d6-b411-1037-8f57-d92a048864e3
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180304160740Z
+dhcpKeyDN: cn=pdns_update_key,ou=Zones,cn=DHCPConfig,ou=dhcpd,ou=Services,dc
+ =alcocer,dc=net
+entryCSN: 20180306155525.574071Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180306155525Z
+
+dn: ou=nfs-automount,ou=Services,dc=alcocer,dc=net
+ou: nfs-automount
+objectClass: organizationalUnit
+objectClass: top
+structuralObjectClass: organizationalUnit
+entryUUID: 3dd808bc-b56a-1037-9004-d758827de6aa
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180306091230Z
+entryCSN: 20180306091230.281486Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180306091230Z
+
+dn: nisMapName=auto.master,ou=nfs-automount,ou=Services,dc=alcocer,dc=net
+objectClass: nisMap
+objectClass: top
+structuralObjectClass: nisMap
+entryUUID: 4648b5be-b56a-1037-9005-d758827de6aa
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180306091244Z
+nisMapName: auto.master
+entryCSN: 20180306091312.700377Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180306091312Z
+
+dn: cn=/mnt,nisMapName=auto.master,ou=nfs-automount,ou=Services,dc=alcocer,d
+ c=net
+cn: /mnt
+nisMapName: auto.master
+objectClass: nisObject
+nisMapEntry: auto.mnt
+structuralObjectClass: nisObject
+entryUUID: 465c4ec6-b56a-1037-9006-d758827de6aa
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180306091244Z
+entryCSN: 20180306091244.570142Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180306091244Z
+
+dn: nisMapName=auto.mnt,ou=nfs-automount,ou=Services,dc=alcocer,dc=net
+objectClass: nisMap
+objectClass: top
+structuralObjectClass: nisMap
+entryUUID: 78f30b4a-b56a-1037-9007-d758827de6aa
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180306091409Z
+nisMapName: auto.mnt
+entryCSN: 20180306091421.881349Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180306091421Z
+
+dn: cn=s500G,nisMapName=auto.mnt,ou=nfs-automount,ou=Services,dc=alcocer,dc=
+ net
+cn: s500G
+nisMapName: auto.mnt
+objectClass: nisObject
+nisMapEntry: -fstype=nfs,rw servidor.alcocer.net:/mnt/s500G
+structuralObjectClass: nisObject
+entryUUID: 79062806-b56a-1037-9008-d758827de6aa
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180306091409Z
+entryCSN: 20180306091409.569336Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180306091409Z
+
+dn: cn=seagate1T,nisMapName=auto.mnt,ou=nfs-automount,ou=Services,dc=alcocer
+ ,dc=net
+cn: seagate1T
+nisMapName: auto.mnt
+objectClass: nisObject
+nisMapEntry: -fstype=nfs,rw servidor.alcocer.net:/mnt/seagate1T
+structuralObjectClass: nisObject
+entryUUID: 792ded78-b56a-1037-900a-d758827de6aa
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180306091409Z
+entryCSN: 20180306091409.829976Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180306091409Z
+
+dn: cn=mypassport2T,nisMapName=auto.mnt,ou=nfs-automount,ou=Services,dc=alco
+ cer,dc=net
+cn: mypassport2T
+nisMapName: auto.mnt
+objectClass: nisObject
+nisMapEntry: -fstype=nfs,rw servidor.alcocer.net:/mnt/mypassport2T
+structuralObjectClass: nisObject
+entryUUID: 7968ab48-b56a-1037-900d-d758827de6aa
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180306091410Z
+entryCSN: 20180306091410.214955Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180306091410Z
+
+dn: cn=mypassport750G,nisMapName=auto.mnt,ou=nfs-automount,ou=Services,dc=al
+ cocer,dc=net
+cn: mypassport750G
+nisMapName: auto.mnt
+objectClass: nisObject
+nisMapEntry: -fstype=nfs,rw servidor.alcocer.net:/mnt/mypassport750G
+structuralObjectClass: nisObject
+entryUUID: 797c7ea2-b56a-1037-900e-d758827de6aa
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180306091410Z
+entryCSN: 20180306091410.344859Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180306091410Z
+
+dn: uid=manuel,ou=Users,dc=alcocer,dc=net
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+cn:: TWFudWVsIEFsY29jZXIgSmltw6luZXo=
+sn: User
+uid: manuel
+uidNumber: 1000
+gidNumber: 1000
+homeDirectory: /home/manuel
+loginShell: /bin/zsh
+structuralObjectClass: inetOrgPerson
+entryUUID: cc922248-b6f2-1037-88f1-b1abe22d38e6
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180308080232Z
+userPassword:: e1NBU0x9bWFudWVsQEFMQ09DRVIuTkVU
+entryCSN: 20180308095750.657573Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180308095750Z
+
+dn: cn=vpnserver2,ou=Hosts,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,dc=
+ net
+cn: vpnserver2
+objectClass: dhcpHost
+objectClass: top
+structuralObjectClass: dhcpHost
+entryUUID: 2bc8d4f4-d75b-1037-88f9-052a75f63dcf
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180418135017Z
+dhcpHWAddress: ethernet e2:12:24:60:1c:c9
+dhcpStatements: {0}fixed-address 10.0.0.15
+entryCSN: 20180418135100.581593Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180418135100Z
+
+dn: cn=pxe,ou=Hosts,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,dc=net
+cn: pxe
+objectClass: dhcpHost
+objectClass: top
+structuralObjectClass: dhcpHost
+entryUUID: 3fc3b5d8-da39-1037-88fa-052a75f63dcf
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180422052501Z
+dhcpHWAddress: ethernet 6a:c6:f7:93:6d:ab
+dhcpStatements: {0}fixed-address 10.0.0.11
+entryCSN: 20180422053622.064396Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180422053622Z
+
+dn: cn=rancher0,ou=Hosts,cn=DHCPConfig,ou=dhcpd,ou=Services,dc=alcocer,dc=ne
+ t
+objectClass: dhcpHost
+objectClass: top
+structuralObjectClass: dhcpHost
+entryUUID: 56bce6c2-da4a-1037-88fd-052a75f63dcf
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180422072721Z
+dhcpHWAddress: ethernet BE:D9:8C:53:BD:C7
+dhcpStatements: {0}fixed-address 10.0.0.16
+cn: rancher0
+entryCSN: 20180627083356.604333Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180627083356Z
+
+dn: cn=hitachi1T,nisMapName=auto.mnt,ou=nfs-automount,ou=Services,dc=alcocer
+ ,dc=net
+cn: hitachi1T
+nisMapName: auto.mnt
+objectClass: nisObject
+structuralObjectClass: nisObject
+entryUUID: e444c1ea-e4bd-1037-9911-13215d346674
+creatorsName: cn=admin,dc=alcocer,dc=net
+createTimestamp: 20180505143942Z
+nisMapEntry: -fstype=nfs,rw pve2.alcocer.net:/srv/hitachi1T
+entryCSN: 20180622174708.020452Z#000000#000#000000
+modifiersName: cn=admin,dc=alcocer,dc=net
+modifyTimestamp: 20180622174708Z
+

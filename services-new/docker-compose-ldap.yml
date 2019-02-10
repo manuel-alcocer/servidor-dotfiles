@@ -1,0 +1,28 @@
+version: '3.6'
+
+services:
+  ldap:
+    container_name: ldap
+    build:
+      context: builders/openldap
+    image: user/ldap
+    ports:
+      - "389:389"
+      - "636:636"
+    environment:
+      - RESTORE_CONF_ALWAYS=1
+      - RESTORE_DB_ALWAYS=1
+      - BACKUP=1
+    volumes:
+      - slapd_db:/etc/openldap
+      - slapd_var:/var/lib/openldap
+      - slapd_backup:/backup
+      - /root/ldap_backup/ldap-config.ldif:/restore-config.ldif:ro
+      - /root/ldap_backup/ldap-database.ldif:/restore-database.ldif:ro
+    restart: unless-stopped
+
+volumes:
+  slapd_db:
+  slapd_var:
+  slapd_backup:
+
