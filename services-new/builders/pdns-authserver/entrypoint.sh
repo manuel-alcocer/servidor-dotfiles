@@ -35,6 +35,7 @@ function ping_db(){
 
 function launch(){
     printf 'Iniciando el demonio...\n'
+    export DAEMON_OPTS=$(echo $DAEMON_OPTS | envsubst)
     $PDNS_CMD $DAEMON_OPTS
 }
 
